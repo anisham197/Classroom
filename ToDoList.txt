@@ -1,0 +1,5 @@
+Authentication
+- form validation : usn, email, password strength
+- drop down menu
+- forgot password
+- remember me
