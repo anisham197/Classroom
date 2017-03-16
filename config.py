@@ -14,7 +14,6 @@ SESSION_TYPE = "filesystem"
 PROPAGATE_EXCEPTIONS = True
 
 # Define the database - we are working with
-# SQLite for this example
 SQLALCHEMY_DATABASE_URI = "mysql+pymysql://root:root@localhost/Classroom"
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 SQLALCHEMY_ECHO = True

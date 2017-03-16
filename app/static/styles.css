@@ -17,7 +17,7 @@
 .web-ribbon {
   width: 100%;
   height: 40vh;
-  background-color: #4CAF50;
+  background-color: #4CAF50; /*green*/
   flex-shrink: 0;
 }
 

@@ -1,5 +1,6 @@
 from app import db
 
+# role: 0 - teacher, 1 - student etc
 class User(db.Model):
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key = True)
