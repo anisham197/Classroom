@@ -44,7 +44,6 @@
 
 }
 
-
 .web-layout.is-small-screen .web-content {
   padding: 40px 28px;
 }
@@ -115,3 +114,5 @@
 .web-footer .mdl-mini-footer--link-list a {
   font-size: 13px;
 }
+
+#my-select:invalid { color: #666666; }

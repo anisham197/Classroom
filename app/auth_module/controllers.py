@@ -3,7 +3,6 @@ from flask_session import Session
 from passlib.apps import custom_app_context as pwd_context
 from tempfile import gettempdir
 
-from app.auth_module.helpers import *
 from app import db
 # Import module models (i.e. User)
 from app.auth_module.models import User, Student
@@ -37,7 +36,7 @@ def login():
 
         # redirect user to home page
         flash("You are logged in !", 'info')
-        return render_template("auth/login.html")
+        return redirect(url_for("index"))
 
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
@@ -45,6 +44,9 @@ def login():
 
 @auth_mod.route("/signup", methods=["GET", "POST"])
 def signup():
+
+	# forget any user_id
+    session.clear()
 
     if request.method == "POST" :
 
@@ -77,7 +79,7 @@ def signup():
         student = Student(user.id, request.form["name"], request.form["usn"], request.form["branch"], request.form["email"])
         db.session.add(student)
         db.session.commit()
-        
+
         flash("You have successfully Signed Up !", 'info')
         return render_template("auth/login.html")
 

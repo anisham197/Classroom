@@ -28,16 +28,27 @@
             {% endif %}
         {% endwith %}
         <br>
-        <form method="POST" action="/auth/signup">
+        <form method="POST" action="{{url_for("auth.signup")}}">
           <div class="mdl-textfield mdl-js-textfield">
              <input class="mdl-textfield__input" type="text" name="name" placeholder="Name" required value = {{request.form["name"]}}>
           </div><br>
           <div class="mdl-textfield mdl-js-textfield">
              <input class="mdl-textfield__input" type="text" name="usn" placeholder="USN" required value = {{request.form["usn"]}}  >
           </div><br>
+
           <div class="mdl-textfield mdl-js-textfield">
-             <input class="mdl-textfield__input" type="text" name="branch" placeholder="Branch" required value = {{request.form["branch"]}}>
-          </div><br>
+            <select id="my-select" class="mdl-textfield__input"  name="branch" required }>
+              <option value="" disabled selected hidden>Branch</option>
+              <option value="CSE">CSE</option>
+              <option value="ISE">ISE</option>
+              <option value="ECE">ECE</option>
+							<option value="MCA">MCA</option>
+            </select>
+					</div><br>
+
+          <!-- <div class="mdl-textfield mdl-js-textfield"> -->
+             <!-- <input class="mdl-textfield__input" type="text" name="branch" placeholder="Branch" required value = request.form["branch"]> -->
+          <!-- </div><br> -->
           <div class="mdl-textfield mdl-js-textfield">
              <input class="mdl-textfield__input" type="email" name="email" placeholder="Email" required value = {{request.form["email"]}}>
           </div><br>

@@ -3,6 +3,7 @@ from flask import Flask, render_template
 
 # Import SQLAlchemy
 from flask_sqlalchemy import SQLAlchemy
+from app.helpers import *
 
 # Define the WSGI application object
 app = Flask(__name__)
@@ -27,6 +28,10 @@ app.register_blueprint(auth_module)
 # app.register_blueprint(xyz_module)
 # ..
 
+@app.route("/", methods=["GET", "POST"])
+@login_required
+def index():
+	return render_template("classes/classroom.html")
 # Build the database:
 # This will create the database file using SQLAlchemy
 db.create_all()

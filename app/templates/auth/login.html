@@ -28,7 +28,7 @@
             {% endif %}
         {% endwith %}
         <br>
-        <form method="POST" action="/auth/login">
+        <form method="POST" action="{{url_for("auth.login")}}">
          <div class="mdl-textfield mdl-js-textfield">
             <input class="mdl-textfield__input" type="text" name="username" placeholder="Username" required>
          </div><br>
@@ -38,7 +38,7 @@
             <input type="submit" class="rc-button rc-button-submit" value="Login">
         </form><br>
           <div>
-            <a class = "web-link web-link:hover" href = "/auth/signup"> New Student ? Sign Up !
+            <a class = "web-link web-link:hover" href = "{{url_for("auth.signup")}}"> New Student ? Sign Up !
         </div>
 
       </div>
