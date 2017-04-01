@@ -36,7 +36,8 @@ def login():
 
         # redirect user to home page
         flash("You are logged in !", 'info')
-        return redirect(url_for("index"))
+        return render_template("classes/no_classroom.html")
+
 
     # else if user reached route via GET (as by clicking a link or via redirect)
     else:
