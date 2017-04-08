@@ -3,11 +3,13 @@ from flask_session import Session
 from app.helpers import *
 #from tempfile import gettempdir
 from app import db
-
+import random
 # Define the blueprint
-classroom_mod = Blueprint('classroom', __name__, url_prefix='/classes' , static_folder = '../static', template_folder = '../templates/classroom')
+classroom_mod = Blueprint('classroom', __name__, url_prefix='/classes' , static_folder = '../static', template_folder = '../templates/classes')
 
-@classroom_mod.route("/classroom", methods=["GET", "POST"])
+@classroom_mod.route("/index", methods=["GET", "POST"])
 @login_required
-def classroom():
-	return render_template("classes/classroom.html")
+def index():
+    #check with db that code is unique
+    code = random.randint(10000, 99999)
+    return render_template("classes/classroom.html", code=code)
