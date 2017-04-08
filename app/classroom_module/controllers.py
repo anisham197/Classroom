@@ -12,7 +12,7 @@ classroom_mod = Blueprint('classroom', __name__, url_prefix='/classes' , static_
 def index():
     if request.method == "GET" :
         #Check for existing classes
-        return render_template("classes/classroom.html")
+        return render_template("classes/no_classroom.html")
 
 
 @classroom_mod.route("/createclass", methods=["GET", "POST"])
