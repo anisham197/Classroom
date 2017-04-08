@@ -1,19 +1,18 @@
 {% extends "layout.html" %}
 
-{% block head %}
-<link href="{{ url_for('static', filename='classroom.css') }}" rel="stylesheet"/>
-{% endblock %}
+ {% block head %}
+ <!-- <link href="{{ url_for('static', filename='classroom.css') }}" rel="stylesheet" /> -->
+<link href="{{ url_for('static', filename='no_classroom.css') }}" rel="stylesheet" />
+ {% endblock %}
 
-{% block title %}
-    Classroom
-{% endblock %}
+ {% block title %} Classroom {% endblock %}
+ {% include "header.html" %}
 
-{% include "header.html" %}
+  {% block body %}
+    <div id = "class_body" class="blankslate large-format spacious clean-background">
+        <h3>You haven't joined any classroom yet.</h3>
 
-{% block body %}
-
-<div id="container">
-    <p> No classes!
-    </p>
-</div>
+        <a class="btn btn-green btn-big" role="button" href="/classrooms/new">
+          Join a Classroom
+</a> </div>
 {% endblock %}
