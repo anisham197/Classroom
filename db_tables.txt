@@ -1,0 +1,58 @@
+1) User
+    id ( auto_inc)   [index]
+    username    [index]
+    password
+    role ( 0-Teacher 1-Student) [index]
+
+2) Student
+    id ( auto_inc)
+    user_id ( FK to User.id)   [index]
+    name
+    usn [index]
+    branch
+    email
+
+3) Classroom
+    id ( auto_inc)
+    class_code  [index]
+    creator_id  (FK to User.id of teacher) [index]
+    class_name [index]
+    subject
+    subject_code
+    credits
+    semester
+    description
+
+4) User_Classroom
+    user_id (FK to User.id)   [index]
+    class_code (FK to Classroom.class_code) [index]
+    role [ 0-Creator 1-Collaborator 2-Viewer]
+
+5) Teacher - (Adding/Removing Collaborator)
+    id (auto_inc)
+    user_id (FK to User.id)   [index]
+    name
+    email
+    tid (like usn)
+
+6) Assignment
+    id (auto inc)
+    class_code (FK to Classroom.class_code) [index]
+    title
+    last_date
+    max_score
+    description
+    File types
+        doc
+        pdf
+        ppt
+        zip
+
+7) Submissions
+    user_id (FK to User.id)   [index]
+    assignment_id (FK to Assignment.id)   [index]
+    class-code (FK to Classroom.class_code) [index]
+    timestamp
+    file_format
+    grade
+    file
