@@ -13,7 +13,7 @@
     email
 
 3) Classroom
-    id ( auto_inc)
+    id ( auto_inc) - do we need ?
     class_code  [index]
     creator_id  (FK to User.id of teacher) [index]
     class_name [index]
