@@ -4,8 +4,7 @@ from passlib.apps import custom_app_context as pwd_context
 from tempfile import gettempdir
 
 from app import db
-# Import module models (i.e. User)
-from app.auth_module.models import User, Student
+from app.queries import *
 
 # Define the blueprint
 auth_mod = Blueprint('auth', __name__, url_prefix='/auth' , static_folder = '../static', template_folder = '../templates/auth')
@@ -24,8 +23,7 @@ def login():
     if request.method == "POST":
 
         # query database for username
-        user = User.query.filter(User.username == request.form.get("username")).first()
-
+        user = getUserByUsername(request.form.get("username") )
         # ensure username exists and password is correct
         if user == None or not pwd_context.verify(request.form.get("password"), user.password):
             flash("Invalid Username/Password !", 'error')
@@ -53,8 +51,8 @@ def signup():
     if request.method == "POST" :
 
         # query database for existing username or USN
-        user = User.query.filter( User.username == request.form.get("username") ) .first()
-        student = Student.query.filter(  (Student.usn == request.form.get("usn")) ).first()
+        user = getUserByUsername(request.form.get("username"))
+        student = getStudentByUsn(request.form.get("usn"))
 
         # if user already exists
         if user != None:

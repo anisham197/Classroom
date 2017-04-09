@@ -127,29 +127,30 @@
 </div>
 
 <div>
-	<button id="add_class_fab" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored md-fab-bottom-right">
-			<i class="material-icons">add</i>
-	</button>
+    <form method="GET" action="{{url_for("classroom.createclass")}}">
+        <button id="add_class_fab" type=submit class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored md-fab-bottom-right">
+            <i class="material-icons">add</i>
+        </button>
+    </form>
 </div>
 
-<dialog id = "create_class_dialog" class="mdl-dialog">
+<!-- <dialog id = "create_class_dialog" class="mdl-dialog">
 	<p class="mdl-dialog__title">Create a Class</p>
-	<br><br>
-	<div class="mdl-textfield mdl-js-textfield">
-		 <input class="mdl-textfield__input" type="text" name="class_name" placeholder="Name of the Class" required>
-	</div>
-	<br>
-	<div class="mdl-textfield mdl-js-textfield">
-		<textarea class="mdl-textfield__input" type="text" rows= "4"  placeholder="Description" ></textarea>
-	</div>
-	<br>
-	<p id = "class_code">Class Code: {{code}}</p>
-	<br>
-	<div class="mdl-dialog__actions">
-		<button type="button" class="mdl-button">Create</button>
-		<button type="button" class="mdl-button close">Cancel</button>
-	</div>
-</dialog>
-
-<script src="{{ url_for('static', filename='classroom.js') }}" type= "text/javascript" ></script>
+    <h5>Create a Class</h5><br>
+    <form method="POST" action="{{url_for("classroom.index")}}">
+    	<div class="mdl-textfield mdl-js-textfield">
+    		 <input class="mdl-textfield__input" type="text" name="class_name" placeholder="Name of the Class" required>
+    	</div>
+        <div class="mdl-textfield mdl-js-textfield">
+    		<textarea class="mdl-textfield__input" type="text" rows= "4"  placeholder="Description" required></textarea>
+    	</div>
+    	<p>Class Code: {{code}}</p>
+    	<br>
+    	<div class="mdl-dialog__actions">
+            <input type="submit" value="Create" class="mdl-button create"></button>
+    		<button type="button" class="mdl-button cancel">Cancel</button>
+    	</div>
+    </form>
+</dialog> -->
+<!-- <script src="{{ url_for('static', filename='classroom.js') }}" type= "text/javascript" ></script> -->
 {% endblock %}

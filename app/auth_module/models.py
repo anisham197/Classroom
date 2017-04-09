@@ -2,7 +2,7 @@ from app import db
 
 # role: 0 - teacher, 1 - student etc
 class User(db.Model):
-    __tablename__ = "users"
+    __tablename__ = "user"
     id = db.Column(db.Integer, primary_key = True)
     username = db.Column(db.String(255) )
     password = db.Column(db.String(255))
@@ -14,7 +14,7 @@ class User(db.Model):
         self.role = role
 
 class Student(db.Model):
-    __tablename__ = "students"
+    __tablename__ = "student"
     id = db.Column(db.Integer, primary_key = True)
     user_id = db.Column(db.Integer)
     name = db.Column(db.String(255) )

@@ -7,7 +7,9 @@ fab.onclick = function() {
 		dialogPolyfill.registerDialog(createClassDialog);
 	}
 	createClassDialog.showModal();
-	createClassDialog.querySelector('.close').addEventListener('click', function() {
+
+	createClassDialog.querySelector('.cancel').addEventListener('click', function() {
 		createClassDialog.close();
 	});
+
 }

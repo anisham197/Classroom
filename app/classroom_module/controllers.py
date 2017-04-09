@@ -10,6 +10,17 @@ classroom_mod = Blueprint('classroom', __name__, url_prefix='/classes' , static_
 @classroom_mod.route("/index", methods=["GET", "POST"])
 @login_required
 def index():
-    #check with db that code is unique
-    code = random.randint(10000, 99999)
-    return render_template("classes/classroom.html", code=code)
+    if request.method == "GET" :
+        #Check for existing classes
+        return render_template("classes/classroom.html")
+
+
+@classroom_mod.route("/createclass", methods=["GET", "POST"])
+@login_required
+def createclass():
+    if request.method == "GET" :
+        #check with db that code is unique
+        code = random.randint(10000, 99999)
+        return render_template("classes/create_class.html", code=code)
+    if request.method == "POST" :
+        return render_template("classes/classroom.html")
