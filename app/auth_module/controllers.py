@@ -4,6 +4,7 @@ from passlib.apps import custom_app_context as pwd_context
 from tempfile import gettempdir
 
 from app import db
+from app.auth_module.models import User, Student
 from app.queries import *
 
 # Define the blueprint

@@ -3,3 +3,7 @@ Authentication
 - forgot password
 - remember me - Done ?
 - logout
+
+Join Classroom
+Differentiate between ui for teacher and for student (fab)
+Classes dynamic display from DB - no _classroom ( connect that button to add/join dialog)
