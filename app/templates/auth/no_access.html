@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+ {% block head %}
+<link href="{{ url_for('static', filename='no_classroom.css') }}" rel="stylesheet" />
+ {% endblock %}
+
+ {% block title %} Classroom {% endblock %}
+ {% include "header.html" %}
+
+  {% block body %}
+    <div>
+        <h3>You do not have access to this page ! </h3>
+    </div>
+{% endblock %}

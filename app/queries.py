@@ -10,3 +10,6 @@ def getStudentByUsn(usn) :
 
 def getClassroomByCode(code) :
     return Classroom.query.filter(Classroom.class_code == code ).first()
+
+def getUserByUserID(user_id) :
+    return User.query.filter(User.id == user_id).first()

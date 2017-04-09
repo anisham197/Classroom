@@ -15,8 +15,8 @@ class User(db.Model):
 
 class Student(db.Model):
     __tablename__ = "student"
-    id = db.Column(db.Integer, primary_key = True)
-    user_id = db.Column(db.Integer)
+    #id = db.Column(db.Integer, primary_key = True)
+    user_id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(255) )
     usn = db.Column(db.String(255))
     branch = db.Column(db.String(255) )
