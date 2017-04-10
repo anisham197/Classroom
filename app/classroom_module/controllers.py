@@ -18,7 +18,7 @@ TEACHER = 0
 @login_required
 def index():
     if request.method == "GET" :
-        #Check for existing classes
+        # TODO Check for existing classes
         return render_template("classes/classroom.html")
 
 
