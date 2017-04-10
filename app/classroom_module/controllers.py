@@ -26,7 +26,11 @@ def index():
 
     if request.method == "POST" :
         if (getClassroomByCode(request.form["class_code"]) == None ) :
-            return render_template("auth/no_access.html")
+            return render_template("auth/no_access.html", msg="Incorrect Class Code")
+
+        if (getUser_ClassroomByCodeAndID(session["user_id"],request.form["class_code"]) != None):
+            return render_template("auth/no_access.html", msg="Already part of this class")
+
         user_class = User_Classroom( session["user_id"], request.form["class_code"], STUDENT)
         db.session.add(user_class)
         db.session.commit()
@@ -40,7 +44,7 @@ def createclass():
 
     user = getUserByUserID(session["user_id"])
     if  user.role != TEACHER :
-        return render_template("auth/no_access.html")
+        return render_template("auth/no_access.html",msg="You do not have access to this page !")
 
     if request.method == "GET" :
         #check with db that code is unique

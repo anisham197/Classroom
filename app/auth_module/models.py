@@ -22,6 +22,7 @@ class Student(db.Model):
     branch = db.Column(db.String(255) )
     email = db.Column(db.String(255))
 
+
     def __init__(self, user_id, name, usn, branch, email ):
         self.user_id = user_id
         self.name = name

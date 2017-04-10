@@ -1,6 +1,6 @@
 # Import module models (i.e. User)
 from app.auth_module.models import User, Student
-from app.classroom_module.models import Classroom
+from app.classroom_module.models import Classroom, User_Classroom
 
 def getUserByUsername(username) :
     return User.query.filter(User.username == username).first()
@@ -13,3 +13,6 @@ def getClassroomByCode(code) :
 
 def getUserByUserID(user_id) :
     return User.query.filter(User.id == user_id).first()
+
+def getUser_ClassroomByCodeAndID(user_id, class_code) :
+    return User_Classroom.query.filter( (User_Classroom.user_id == user_id) and (User_Classroom.class_code == class_code) ).first()
