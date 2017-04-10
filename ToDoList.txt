@@ -1,9 +1,13 @@
 Authentication
 - form validation : usn, email, password strength
 - forgot password
-- remember me - Done ?
+- remember me - Done 
 - logout
 
-Join Classroom
 Differentiate between ui for teacher and for student (fab)
-Classes dynamic display from DB - no _classroom ( connect that button to add/join dialog)
+
+Amisha - Classes dynamic display from DB - no _classroom ( connect that button to add/join dialog)
+
+
+from passlib.apps import custom_app_context as pwd_context
+pwd_context.encrypt("1234")

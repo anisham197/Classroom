@@ -26,7 +26,7 @@
 4) User_Classroom
     user_id (FK to User.id)   [index]
     class_code (FK to Classroom.class_code) [index]
-    role [ 0-Creator 1-Collaborator 2-Viewer]
+    role [ 0-Creator 1-Student 2-Collaborator ]
 
 5) Teacher - (Adding/Removing Collaborator)
     id (auto_inc)
