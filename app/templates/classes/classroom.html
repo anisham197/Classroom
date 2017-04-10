@@ -133,16 +133,17 @@
             </div>
         </div>
     </div>
+    <div>
+        <form method="GET" action="{{url_for("classroom.createclass")}}">
+            <button id="add_class_fab" type=submit class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored md-fab-bottom-right">
+                <i class="material-icons">add</i>
+            </button>
+        </form>
+    </div>
+
 </main>
 
 
-<div>
-    <form method="GET" action="{{url_for("classroom.createclass")}}">
-        <button id="add_class_fab" type=submit class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored md-fab-bottom-right">
-            <i class="material-icons">add</i>
-        </button>
-    </form>
-</div>
 
 <!-- <dialog id = "create_class_dialog" class="mdl-dialog">
 	<p class="mdl-dialog__title">Create a Class</p>
