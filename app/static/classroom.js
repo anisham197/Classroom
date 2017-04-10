@@ -1,15 +1,15 @@
-var fab = document.getElementById('add_class_fab');
+var fab = document.getElementById('join_class_fab');
 fab.onclick = function() {
-	var createClassDialog = document.getElementById('create_class_dialog');
+	var joinClassDialog = document.getElementById('join_class_dialog');
 
     //document.getElementById("class_code").innerHTML=code;
-	if (! createClassDialog.showModal) {
-		dialogPolyfill.registerDialog(createClassDialog);
+	if (! joinClassDialog.showModal) {
+		dialogPolyfill.registerDialog(joinClassDialog);
 	}
-	createClassDialog.showModal();
+	joinClassDialog.showModal();
 
-	createClassDialog.querySelector('.cancel').addEventListener('click', function() {
-		createClassDialog.close();
+	joinClassDialog.querySelector('.cancel').addEventListener('click', function() {
+		joinClassDialog.close();
 	});
 
 }

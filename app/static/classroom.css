@@ -41,6 +41,15 @@
 
 }
 
+#join_class_fab {
+	position: fixed;
+	left: 1190px;
+	top: 570px;
+    background-color: #FFC107;
+
+}
+
+
 /*#create_class_dialog {
 	width: 400px;
 	height: 600px;

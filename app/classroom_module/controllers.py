@@ -22,7 +22,8 @@ TEACHER = 0
 def index():
     if request.method == "GET" :
         #TODO Check for existing classes
-        return render_template("classes/classroom.html")
+        user = getUserByUserID(session["user_id"])
+        return render_template("classes/classroom.html", role=user.role)
 
     if request.method == "POST" :
         if (getClassroomByCode(request.form["class_code"]) == None ) :
