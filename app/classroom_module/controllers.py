@@ -12,13 +12,32 @@ classroom_mod = Blueprint('classroom', __name__, url_prefix='/classes' , static_
 
 # define role 'student' as 1
 CREATOR = 0
+STUDENT = 1
+COLLABORATOR = 2
+
 TEACHER = 0
 
 @classroom_mod.route("/index", methods=["GET", "POST"])
 @login_required
 def index():
     if request.method == "GET" :
-        # TODO Check for existing classes
+
+        #TODO Check for existing classes
+        print("qqqqqqq" + getUserClassroom(session["user_id"]))
+        return render_template("classes/classroom.html")
+
+    if request.method == "POST" :
+        if (getClassroomByCode(request.form["class_code"]) == None ) :
+            return render_template("auth/no_access.html", msg="Incorrect Class Code")
+
+        if (getUser_ClassroomByCodeAndID(session["user_id"],request.form["class_code"]) != None):
+            return render_template("auth/no_access.html", msg="Already part of this class")
+
+        user_class = User_Classroom( session["user_id"], request.form["class_code"], STUDENT)
+        db.session.add(user_class)
+        db.session.commit()
+        #TODO ADD new Classes
+
         return render_template("classes/classroom.html")
 
 
@@ -28,7 +47,7 @@ def createclass():
 
     user = getUserByUserID(session["user_id"])
     if  user.role != TEACHER :
-        return render_template("auth/no_access.html")
+        return render_template("auth/no_access.html",msg="You do not have access to this page !")
 
     if request.method == "GET" :
         #check with db that code is unique
@@ -48,4 +67,5 @@ def createclass():
         user_class = User_Classroom( session["user_id"], session["class_code"], CREATOR)
         db.session.add(user_class)
         db.session.commit()
-        return render_template("classes/classroom.html")
+
+        return redirect(url_for("classroom.index"))
