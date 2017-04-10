@@ -1,29 +1,47 @@
 <head>
   <link href="{{ url_for('static', filename='header.css') }}" rel="stylesheet" />
+  <!-- <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.blue-orange.min.css"> -->
 </head>
 
-<header class="mdl-layout__header">
-    <div class="mdl-layout__header-row search_bar">
-        <!-- Title -->
-        <span class="mdl-layout-title">CLASSES</span>
-        <!-- Add spacer, to align navigation to the right -->
-        <!--<div class="mdl-layout-spacer"></div>-->
+<!-- <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header"> -->
+            <header class="mdl-layout__header">
+                <div class="mdl-layout__header-row search_bar">
+                    <!-- Title -->
+                    <span class="mdl-layout-title">classes</span>
+                    <!-- Add spacer, to align navigation to the right -->
+                    <div class="mdl-layout-spacer"></div>
 
-        <!-- Displayed on Computer and Tablet -->
-        <!-- Search -->
-        <div class="mdh-expandable-search mdl-cell--hide-phone">
-            <i class="material-icons">search</i>
-            <form action="#">
-                <input type="text" placeholder="Search" size="1">
-            </form>
-        </div>
+                    <!-- Displayed on Computer and Tablet -->
+                    <!-- Search -->
+                    <div class="mdh-expandable-search mdl-cell--hide-phone">
+                        <i class="material-icons">search</i>
+                        <form action="#">
+                            <input type="text" placeholder="Search" size="1">
+                        </form>
+                    </div>
 
-        <!-- Displayed on mobile -->
-        <div class="mdl-layout-spacer mdl-cell--hide-tablet mdl-cell--hide-desktop"></div>
-        <!-- Search button -->
-        <button class="mdh-toggle-search mdl-button mdl-js-button mdl-button--icon mdl-cell--hide-tablet mdl-cell--hide-desktop">
-        <i class="material-icons">search</i>
-      </button>
-
-    </div>
-</header>
+                    <!-- Displayed on mobile -->
+                    <div class="mdl-layout-spacer mdl-cell--hide-tablet mdl-cell--hide-desktop"></div>
+                    <!-- Search button -->
+                    <button class="mdh-toggle-search mdl-button mdl-js-button mdl-button--icon mdl-cell--hide-tablet mdl-cell--hide-desktop">
+                       <i class="material-icons">search</i>
+                  </button>
+                    <!-- Navigation. We hide it in small screens. -->
+                    <!--<nav class="mdl-navigation mdl-layout--large-screen-only">
+                        <a class="mdl-navigation__link" href="">Link</a>
+                        <a class="mdl-navigation__link" href="">Link</a>
+                        <a class="mdl-navigation__link" href="">Link</a>
+                        <a class="mdl-navigation__link" href="">Link</a>
+                    </nav>-->
+                </div>
+            </header>
+            <!-- <div class="mdl-layout__drawer search_bar">
+                <span class="mdl-layout-title">Title</span>
+                <nav class="mdl-navigation">
+                    <a class="mdl-navigation__link" href="">Classes</a>
+                    <a class="mdl-navigation__link" href="">Settings</a>
+                    <a class="mdl-navigation__link" href="">Link</a>
+                    <a class="mdl-navigation__link" href="">Link</a>
+                </nav>
+            </div> -->
+        <!-- </div> -->

@@ -15,14 +15,13 @@ class User(db.Model):
 
 class Student(db.Model):
     __tablename__ = "student"
-    id = db.Column(db.Integer, primary_key = True)
-    user_id = db.Column(db.Integer)
     #id = db.Column(db.Integer, primary_key = True)
     user_id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(255) )
     usn = db.Column(db.String(255))
     branch = db.Column(db.String(255) )
     email = db.Column(db.String(255))
+
 
     def __init__(self, user_id, name, usn, branch, email ):
         self.user_id = user_id
