@@ -1,0 +1,13 @@
+<dialog id = "join_class_dialog" class="mdl-dialog">
+    <h5>Join a Class</h5><br>
+    <form method="POST" action="{{url_for("classroom.index")}}">
+      <div class="mdl-textfield mdl-js-textfield">
+         <input class="mdl-textfield__input" type="number" min="10000" max="99999" name="class_code" placeholder="Class Code" required>
+      </div>
+      <br>
+      <div class="mdl-dialog__actions">
+        <input type="submit" value="Join" class="mdl-button create"></button>
+        <button type="button" class="mdl-button cancel">Cancel</button>
+      </div>
+    </form>
+</dialog>

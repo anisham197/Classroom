@@ -21,14 +21,28 @@ TEACHER = 0
 @login_required
 def index():
     if request.method == "GET" :
+
         #TODO Check for existing classes
         user = getUserByUserID(session["user_id"])
+
         if ( getUser_ClassroomByID(session["user_id"]) == None) :
-            no_classes = 0;
-            return render_template("classes/no_classroom.html", role=user.role)
-        else:
             no_classes = 1;
-            return render_template("classes/classroom.html", role=user.role)
+            user_classes = None;
+        else:
+            no_classes = 0;
+            user_classes = getUserClassroom(session["user_id"], db.session)
+            # x = session.query(User, Document, DocumentsPermissions).join(Document).join(DocumentsPermissions)
+            # if classes == None and user.role == 1:
+            #     print("\n\n\njoin class\n\n\n\n")
+            #     return render_template("classes/classroom.html", role=user.role, classes=classes)
+            # else:
+            # print("\n\namishaaaaa \n\n" + str(user_classes))
+            # x =[]
+            # for (class1 ,user_class) in user_classes :
+            #     x.append(class1)
+            #     print ("\n\nyayyaya\n" + str(user_class.user_id) + "\n\n " + class1.subject)
+        return render_template("classes/main_class.html", role=user.role, classes=user_classes, no_classes=no_classes)
+
 
     if request.method == "POST" :
         if (getClassroomByCode(request.form["class_code"]) == None ) :
@@ -42,7 +56,6 @@ def index():
         db.session.commit()
         #TODO ADD new Classes
         return redirect(url_for("classroom.index"))
-
 
 @classroom_mod.route("/createclass", methods=["GET", "POST"])
 @login_required

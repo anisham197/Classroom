@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block head %}
+<link href="{{ url_for('static', filename='classroom.css') }}" rel="stylesheet" />
+<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.teal-amber.min.css">
+<script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
+{% endblock %}
+
+{% block title %} Classroom {% endblock %}
+
+{% block body %}
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    {% include "header.html" %}
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Title</span>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="">Classes</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+        </nav>
+    </div>
+</div>
+
+<main class="mdl-layout__content">
+
+{% if no_classes is equalto 0 %}
+     {% include "classroom.html" %}
+{% else %}
+    {% include "no_classroom.html" %}
+{% endif %}
+
+{% if role is equalto 0 %}
+     {% include "add_class_fab.html" %}
+{% endif %}
+
+{% if role is equalto 1 %}
+     {% include "join_class_fab.html" %}
+{% endif %}
+
+{% include "join_class_dialog.html" %}
+<main>
+<script src="{{ url_for('static', filename='classroom.js') }}" type= "text/javascript" ></script>
+{% endblock %}
