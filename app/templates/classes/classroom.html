@@ -30,8 +30,10 @@
             <!-- Square card -->
             {% for class in classes %}
               {% include "card.html" %}
+              <!-- {% for class in x %} -->
+              <!-- {% endfor %} -->
             {% endfor %}
-        </div>  
+        </div>
     </div>
     <div>
         <form method="GET" action="{{url_for("classroom.createclass")}}">

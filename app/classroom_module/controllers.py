@@ -24,12 +24,18 @@ def index():
 
         #TODO Check for existing classes
         user = getUserByUserID(session["user_id"])
-        classes = getUserClassroom(session["user_id"])
+        user_classes = getUserClassroom(session["user_id"], db.session)
+        # x = session.query(User, Document, DocumentsPermissions).join(Document).join(DocumentsPermissions)
         # if classes == None and user.role == 1:
         #     print("\n\n\njoin class\n\n\n\n")
         #     return render_template("classes/classroom.html", role=user.role, classes=classes)
         # else:
-        return render_template("classes/classroom.html", role=user.role, classes=classes)
+        # print("\n\namishaaaaa \n\n" + str(user_classes))
+        # x =[]
+        # for (class1 ,user_class) in user_classes :
+        #     x.append(class1)
+        #     print ("\n\nyayyaya\n" + str(user_class.user_id) + "\n\n " + class1.subject)
+        return render_template("classes/classroom.html", role=user.role, classes=user_classes)
 
     if request.method == "POST" :
         if (getClassroomByCode(request.form["class_code"]) == None ) :
