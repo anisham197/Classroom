@@ -23,7 +23,12 @@ def index():
     if request.method == "GET" :
         #TODO Check for existing classes
         user = getUserByUserID(session["user_id"])
-        return render_template("classes/classroom.html", role=user.role)
+        if ( getUser_ClassroomByID(session["user_id"]) == None) :
+            no_classes = 0;
+            return render_template("classes/no_classroom.html", role=user.role)
+        else:
+            no_classes = 1;
+            return render_template("classes/classroom.html", role=user.role)
 
     if request.method == "POST" :
         if (getClassroomByCode(request.form["class_code"]) == None ) :
@@ -62,6 +67,7 @@ def createclass():
     if request.method == "POST" :
         new_class = Classroom(session["class_code"], session["user_id"], request.form["class_name"], request.form["subject"], request.form["sub_code"], request.form["credits"],request.form["semester"],request.form["description"])
         db.session.add(new_class)
+        db.session.commit()
         user_class = User_Classroom( session["user_id"], session["class_code"], CREATOR)
         db.session.add(user_class)
         db.session.commit()
