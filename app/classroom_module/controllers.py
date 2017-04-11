@@ -23,8 +23,13 @@ def index():
     if request.method == "GET" :
 
         #TODO Check for existing classes
-        print("qqqqqqq" + getUserClassroom(session["user_id"]))
-        return render_template("classes/classroom.html")
+        user = getUserByUserID(session["user_id"])
+        classes = getUserClassroom(session["user_id"])
+        # if classes == None and user.role == 1:
+        #     print("\n\n\njoin class\n\n\n\n")
+        #     return render_template("classes/classroom.html", role=user.role, classes=classes)
+        # else:
+        return render_template("classes/classroom.html", role=user.role, classes=classes)
 
     if request.method == "POST" :
         if (getClassroomByCode(request.form["class_code"]) == None ) :

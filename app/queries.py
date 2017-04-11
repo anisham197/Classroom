@@ -15,7 +15,7 @@ def getUserByUserID(user_id) :
     return User.query.filter(User.id == user_id).first()
 
 def getUser_ClassroomByCodeAndID(user_id, class_code) :
-    return User_Classroom.query.filter( (User_Classroom.user_id == user_id) and (User_Classroom.class_code == class_code) ).first()
+    return User_Classroom.query.filter(User_Classroom.user_id == user_id).filter(User_Classroom.class_code == class_code).first()
 
 def getUserClassroom(user_id) :
-    return User_Classroom.query.filter(User_Classroom.user_id == user_id).filter(User_Classroom.role == 0).first()
+    return User_Classroom.query.filter(User_Classroom.user_id == user_id).filter(User_Classroom.role == 1).all()

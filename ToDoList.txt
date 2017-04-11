@@ -1,11 +1,10 @@
 Authentication
 - form validation : usn, email, password strength
 - forgot password
-- remember me - Done 
+- remember me - Done
 - logout
 
-Differentiate between ui for teacher and for student (fab)
-
+Option for teacher to join or add
 Amisha - Classes dynamic display from DB - no _classroom ( connect that button to add/join dialog)
 
 
