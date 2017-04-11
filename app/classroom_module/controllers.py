@@ -36,7 +36,7 @@ def index():
         db.session.add(user_class)
         db.session.commit()
         #TODO ADD new Classes
-        return render_template("classes/classroom.html")
+        return redirect(url_for("classroom.index"))
 
 
 @classroom_mod.route("/createclass", methods=["GET", "POST"])

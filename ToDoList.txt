@@ -4,7 +4,6 @@ Authentication
 - remember me - Done
 - logout
 
-Option for teacher to join or add
 Amisha - Classes dynamic display from DB - no _classroom ( connect that button to add/join dialog)
 
 
