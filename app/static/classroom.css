@@ -26,8 +26,8 @@
 
 .demo-card-square>.mdl-card__title {
 		color: #fff;
-		/*background: #03a9f4;*/
-        background: linear-gradient(to bottom right, #009688, #FFC107);
+		background: #009688;
+    /*background: linear-gradient(to bottom right, #009688, #FFC107);*/
 }
 
 .demo-card-square>.mdl-card__accent {
@@ -36,16 +36,16 @@
 
 #add_class_fab {
 	position: fixed;
-	left: 1190px;
-	top: 570px;
+	left: 810px;
+	top: 370px;
   background-color: #FFC107;
 
 }
 
 #join_class_fab {
 	position: fixed;
-	left: 1190px;
-	top: 570px;
+	left: 810px;
+	top: 3700px;
     background-color: #FFC107;
 
 }
