@@ -17,7 +17,7 @@
 .web-ribbon {
   width: 100%;
   height: 40vh;
-  background-color: #4CAF50; /*green*/
+  background-color: #009688; /*green*/
   flex-shrink: 0;
 }
 
@@ -56,7 +56,7 @@
 .web-link
 {
   text-decoration: none;
-  color: #4CAF50;
+  color: #009688;
 }
 
 .web-link:hover{
@@ -101,15 +101,15 @@
     cursor: default;
 }
 .rc-button-submit, .rc-button-submit:visited {
-    border: 1px solid #4CAF50;
+    border: 1px solid #009688;
     color: #fff;
     text-shadow: 0 1px rgba(0,0,0,0.1);
-    background-color: #4CAF50;
-    background-image: -webkit-linear-gradient(top,#4CAF50,#43A047);
-    background-image: -moz-linear-gradient(top,#4CAF50,#43A047);
-    background-image: -ms-linear-gradient(top,#4CAF50,#43A047);
-    background-image: -o-linear-gradient(top,#4CAF50,#43A047);
-    background-image: linear-gradient(top,#4CAF50,#43A047);
+    background-color: #009688;
+    background-image: -webkit-linear-gradient(top,#009688,#00897B);
+    background-image: -moz-linear-gradient(top,#009688,#00897B);
+    background-image: -ms-linear-gradient(top,#009688,#00897B);
+    background-image: -o-linear-gradient(top,#009688,#00897B);
+    background-image: linear-gradient(top,#009688,#00897B);
 }
 
 .web-footer .mdl-mini-footer--link-list a {
