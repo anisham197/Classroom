@@ -8,18 +8,7 @@
 {% block title %} Classroom {% endblock %}
 
 {% block body %}
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    {% include "header.html" %}
-    <div class="mdl-layout__drawer">
-        <span class="mdl-layout-title">Title</span>
-        <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="">Classes</a>
-            <a class="mdl-navigation__link" href="">Link</a>
-            <a class="mdl-navigation__link" href="">Link</a>
-            <a class="mdl-navigation__link" href="">Link</a>
-        </nav>
-    </div>
-</div>
+{% include "class_nav_drawer.html" %}
 
 <main class="mdl-layout__content">
 
