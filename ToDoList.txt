@@ -4,8 +4,5 @@ Authentication
 - remember me - Done
 - logout
 
-Amisha - Classes dynamic display from DB - no _classroom ( connect that button to add/join dialog)
-
-
 from passlib.apps import custom_app_context as pwd_context
 pwd_context.encrypt("1234")

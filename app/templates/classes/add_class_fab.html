@@ -1,0 +1,9 @@
+<div class="dropdown">
+    <button id="add_class_fab" type=button onclick="displayMenu()" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored md-fab-bottom-right">
+        <i class="material-icons">add</i>
+    </button>
+    <div id="fabDropdown" class="dropdown-content">
+        <a onclick="displayDialog()">Join Classroom</a>
+        <a href="{{url_for('classroom.createclass')}}">Add Classroom</a>
+    </div>
+</div>

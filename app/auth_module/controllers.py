@@ -20,6 +20,10 @@ def login():
     # forget any user_id
     session.clear()
 
+    # if user reached route via GET (as by clicking a link or via redirect)
+    if request.method == "GET":
+        return render_template("auth/login.html")
+
     # if user reached route via POST (as by submitting a form via POST)
     if request.method == "POST":
 
@@ -38,16 +42,15 @@ def login():
         return redirect(url_for('classroom.index'))
         # return render_template("classes/classroom.html")
 
-
-    # else if user reached route via GET (as by clicking a link or via redirect)
-    else:
-        return render_template("auth/login.html")
-
 @auth_mod.route("/signup", methods=["GET", "POST"])
 def signup():
 
 	# forget any user_id
     session.clear()
+
+    # if user reached route via GET (as by clicking a link or via redirect)
+    if request.method == "GET" :
+        return render_template("auth/signup.html")
 
     if request.method == "POST" :
 
@@ -83,7 +86,3 @@ def signup():
 
         flash("You have successfully Signed Up !", 'info')
         return render_template("auth/login.html")
-
-    # else if user reached route via GET (as by clicking a link or via redirect)
-    else :
-        return render_template("auth/signup.html")

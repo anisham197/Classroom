@@ -17,6 +17,9 @@ def getUserByUserID(user_id) :
 def getUser_ClassroomByCodeAndID(user_id, class_code) :
     return User_Classroom.query.filter(User_Classroom.user_id == user_id).filter(User_Classroom.class_code == class_code).first()
 
+def getUser_ClassroomByID(user_id) :
+    return User_Classroom.query.filter(User_Classroom.user_id == user_id).first()
+
 def getUserClassroom(user_id, session) :
     return session.query(Classroom).join(User_Classroom, User_Classroom.class_code == Classroom.class_code).filter(User_Classroom.user_id == user_id).filter(User_Classroom.role == 1).all()
     #return session.query(Classroom, User_Classroom).filter(User_Classroom.user_id == user_id).filter(User_Classroom.role == 1).filter(User_Classroom.class_code == Classroom.class_code).all()

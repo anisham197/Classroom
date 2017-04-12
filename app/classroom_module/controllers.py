@@ -24,18 +24,25 @@ def index():
 
         #TODO Check for existing classes
         user = getUserByUserID(session["user_id"])
-        user_classes = getUserClassroom(session["user_id"], db.session)
-        # x = session.query(User, Document, DocumentsPermissions).join(Document).join(DocumentsPermissions)
-        # if classes == None and user.role == 1:
-        #     print("\n\n\njoin class\n\n\n\n")
-        #     return render_template("classes/classroom.html", role=user.role, classes=classes)
-        # else:
-        # print("\n\namishaaaaa \n\n" + str(user_classes))
-        # x =[]
-        # for (class1 ,user_class) in user_classes :
-        #     x.append(class1)
-        #     print ("\n\nyayyaya\n" + str(user_class.user_id) + "\n\n " + class1.subject)
-        return render_template("classes/classroom.html", role=user.role, classes=user_classes)
+
+        if ( getUser_ClassroomByID(session["user_id"]) == None) :
+            no_classes = 1;
+            user_classes = None;
+        else:
+            no_classes = 0;
+            user_classes = getUserClassroom(session["user_id"], db.session)
+            # x = session.query(User, Document, DocumentsPermissions).join(Document).join(DocumentsPermissions)
+            # if classes == None and user.role == 1:
+            #     print("\n\n\njoin class\n\n\n\n")
+            #     return render_template("classes/classroom.html", role=user.role, classes=classes)
+            # else:
+            # print("\n\namishaaaaa \n\n" + str(user_classes))
+            # x =[]
+            # for (class1 ,user_class) in user_classes :
+            #     x.append(class1)
+            #     print ("\n\nyayyaya\n" + str(user_class.user_id) + "\n\n " + class1.subject)
+        return render_template("classes/main_class.html", role=user.role, classes=user_classes, no_classes=no_classes)
+
 
     if request.method == "POST" :
         if (getClassroomByCode(request.form["class_code"]) == None ) :
@@ -73,6 +80,7 @@ def createclass():
     if request.method == "POST" :
         new_class = Classroom(session["class_code"], session["user_id"], request.form["class_name"], request.form["subject"], request.form["sub_code"], request.form["credits"],request.form["semester"],request.form["description"])
         db.session.add(new_class)
+        db.session.commit()
         user_class = User_Classroom( session["user_id"], session["class_code"], CREATOR)
         db.session.add(user_class)
         db.session.commit()

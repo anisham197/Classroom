@@ -1,17 +1,8 @@
-{% extends "layout.html" %}
-
- {% block head %}
-<link href="{{ url_for('static', filename='no_classroom.css') }}" rel="stylesheet" />
- {% endblock %}
-
- {% block title %} Classroom {% endblock %}
- {% include "header.html" %}
-
-  {% block body %}
-    <div id = "class_body" class="blankslate large-format spacious clean-background">
-        <h3>You haven't joined any classroom yet.</h3>
-
-        <a class="btn btn-green btn-big" role="button" href="/classrooms/new">
-          Join a Classroom
-</a> </div>
-{% endblock %}
+<div id="welcome_card" class="demo-card-wide mdl-card mdl-shadow--2dp">
+        <div class="mdl-card__title">
+            <h2 class="mdl-card__title-text">Welcome</h2>
+        </div>
+        <div class="mdl-card__supporting-text">
+        You do not have any classrooms yet. Click on the button below to join a classroom.
+        </div>
+</div>
