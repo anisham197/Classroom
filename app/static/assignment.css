@@ -25,7 +25,7 @@
 }
 
 /*Classroom */
-#class_body {
+#all_assign_body {
 		background: #fafafa;
 		position: relative;
 		padding-left: 16px;
@@ -41,8 +41,7 @@
 
 .demo-card-square.mdl-card {
 		width: 250px;
-		/*height: 300px;*/
-    line-height: 10px;
+		height: 300px;
 		float: left;
 		margin: 1rem;
 		position: relative;
@@ -54,7 +53,6 @@
 
 .demo-card-square>.mdl-card__title {
 		color: #fff;
-    height: 150px;
     background: linear-gradient(to bottom right,#00695C, #009688,#80CBC4);
 }
 
@@ -62,53 +60,10 @@
 		background: #ff9800;
 }
 
-.text_area{
-  height: 70px;
-  line-height: 10px;
-}
-
-#add_class_fab, #join_class_fab {
+#add_assign_fab {
 	position: fixed;
 	left: 93%;
 	top: 87%;
 	background-color: #FFC107;
     color: #FFFFFF;
 }
-
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-content {
-    display: none;
-    position: fixed;
-    left: 83%;
-    top: 78%;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-/* Links inside the dropdown */
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1}
-
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {display:block;}
-
-
-/*#create_class_dialog {
-	width: 400px;
-	height: 600px;
-	text-align: center;
-}*/

@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block head %}
+<link href="{{ url_for('static', filename='assignment.css') }}" rel="stylesheet" />
+<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.teal-amber.min.css">
+{% endblock %}
+
+{% block title %} Assignment {% endblock %}
+
+{% block body %}
+{% include "assign_nav_drawer.html" %}
+
+<main id="main-content" class="mdl-layout__content">
+
+{% if assignments is equalto None %}
+    {% include "no_assignments.html" %}
+{% else %}
+    {% include "all_assignments.html" %}
+{% endif %}
+
+{% if role is equalto 0 %}
+     {% include "add_assign_fab.html" %}
+{% endif %}
+
+</main>
+{% endblock %}
