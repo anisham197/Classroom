@@ -1,13 +1,18 @@
 <div class="mdl-card mdl-shadow--2dp demo-card-square">
     <div class="mdl-card__title mdl-card--expand">
-        <h2 class="mdl-card__title-text">{{ class.subject }}</h2>
+        <h2 class="mdl-card__title-text">{{ class.class_name }}</h2>
     </div>
-    <div class="mdl-card__supporting-text">
-      {{ class.description }}
+    <div class="mdl-card__supporting-text text_area" >
+      <!--sem,class code  -->
+      <div> <b>Class Code : </b>{{ class.class_code }} </div>
+      <div><b> Semester : </b>{{ class.semester }} </div>
+      <div > {{ class.description }} </div>
+
+
     </div>
     <div class="mdl-card__actions mdl-card--border">
         <a class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">
-                  Action
+                  View
         </a>
     </div>
 </div>
