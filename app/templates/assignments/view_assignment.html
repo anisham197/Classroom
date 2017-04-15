@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block head %}
+<link href="{{ url_for('static', filename='assignment.css') }}" rel="stylesheet" />
+<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.teal-amber.min.css">
+{% endblock %}
+
+{% block title %} View Assignment {% endblock %}
+
+{% block body %}
+{% include "assign_nav_drawer.html" %}
+<br><br><br><br>
+
+<main class="web-main mdl-layout__content">
+  <div class="web-container mdl-grid">
+  <!-- <div class="mdl-grid portfolio-max-width"> -->
+    <div class="mdl-cell mdl-cell--2-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+    <div class="mdl-card mdl-shadow--4dp  mdl-cell mdl-cell--8-col">
+           <!-- <div class="mdl-card__title">
+               <h2 class="mdl-card__title-text">Java Assignment</h2>
+           </div> -->
+           <div id="assign_back" class="mdl-card__media">
+               <img class="article-image" border="0" alt="">
+           </div>
+
+          <div id="view_assign">
+           <div>
+               <h2>Java Assignment</h2>
+               <h4>Introduction</h4>
+               <div>
+                   <p>
+                     Excepteur reprehenderit sint exercitation ipsum consequat qui sit id velit elit. Velit anim eiusmod labore sit amet. Voluptate voluptate irure occaecat deserunt incididunt esse in. Sunt velit aliquip sunt elit ex nulla reprehenderit qui ut eiusmod ipsum do. Duis veniam reprehenderit laborum occaecat id proident nulla veniam. Duis enim deserunt voluptate aute veniam sint pariatur exercitation. Irure mollit est sit labore est deserunt pariatur duis aute laboris cupidatat. Consectetur consequat esse est sit veniam adipisicing ipsum enim irure.
+                   </p>
+               </div>
+
+               <h4>Instructions</h4>
+
+               <div>
+                   <p>
+                       Excepteur reprehenderit sint exercitation ipsum consequat qui sit id velit elit. Velit anim eiusmod labore sit amet. Voluptate voluptate irure occaecat deserunt incididunt esse in. Sunt velit aliquip sunt elit ex nulla reprehenderit qui ut eiusmod ipsum do. Duis veniam reprehenderit laborum occaecat id proident nulla veniam. Duis enim deserunt voluptate aute veniam sint pariatur exercitation. Irure mollit est sit labore est deserunt pariatur duis aute laboris cupidatat. Consectetur consequat esse est sit veniam adipisicing ipsum enim irure.
+                   </p>
+               </div>
+
+           </div>
+       </div>
+   </div>
+   </div>
+
+  <!-- Accent-colored raised button with ripple -->
+  <button id="upload" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+      Upload Files
+  </button>
+</main>
+
+{% endblock %}

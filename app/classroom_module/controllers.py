@@ -64,14 +64,14 @@ def createclass():
             if getClassroomByCode(code) == None :
                 invalid = False
 
-        session["class_code"] = code
+        session["join_code"] = code
         return render_template("classes/create_class.html", code=code)
 
     if request.method == "POST" :
-        new_class = Classroom(session["class_code"], session["user_id"], request.form["class_name"], request.form["subject"], request.form["sub_code"], request.form["credits"],request.form["semester"],request.form["description"])
+        new_class = Classroom(session["join_code"], session["user_id"], request.form["class_name"], request.form["subject"], request.form["sub_code"], request.form["credits"],request.form["semester"],request.form["description"])
         db.session.add(new_class)
         db.session.commit()
-        user_class = User_Classroom( session["user_id"], session["class_code"], CREATOR)
+        user_class = User_Classroom( session["user_id"], session["join_code"], CREATOR)
         db.session.add(user_class)
         db.session.commit()
 

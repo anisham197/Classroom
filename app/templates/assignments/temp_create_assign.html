@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block head %}
+<link href="{{ url_for('static', filename='auth.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block title %}
+  Create Assignment
+{% endblock %}
+
+{% block body %}
+<div class="web-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100">
+  <header class="web-header mdl-layout__header mdl-layout__header--scroll mdl-color--grey-100 mdl-color-text--grey-800">
+    <div class="mdl-layout__header-row">
+
+      <span class="mdl-layout-title"> <img src="{{ url_for('static', filename='resources/images/android-icon-36x36.png') }}">     Classroom</span>
+      <div class="mdl-layout-spacer"></div>
+
+    </div>
+  </header>
+  <div class="web-ribbon"></div>
+  <main class="web-main mdl-layout__content">
+    <div class="web-container mdl-grid">
+      <div class="mdl-cell mdl-cell--4-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+      <div class="web-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--4-col">
+          <h3>Create Assignment</h3><br>
+          <form method="POST" action="{{url_for("assignment.createassign")}}">
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" name="title" placeholder="Title" required>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="number" name="max_score" placeholder="Max Score" required>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="date" name="last_date" placeholder="Last Date" required>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+                <textarea class="mdl-textfield__input" type="text" rows= "4" name="description" placeholder="Description" required></textarea>
+            </div>
+
+            <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" disabled name="last_date" placeholder="Supported File Formats" >
+            </div>
+            <div>
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
+                    <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input">
+                    <span class="mdl-checkbox__label">.doc</span>
+                </label>
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-2">
+                    <input type="checkbox" id="checkbox-2" class="mdl-checkbox__input">
+                    <span class="mdl-checkbox__label">.pdf</span>
+                </label>
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-3">
+                    <input type="checkbox" id="checkbox-3" class="mdl-checkbox__input">
+                    <span class="mdl-checkbox__label">.ppt</span>
+                </label>
+                <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-4">
+                    <input type="checkbox" id="checkbox-4" class="mdl-checkbox__input">
+                    <span class="mdl-checkbox__label">.zip</span>
+                </label>
+            </div>
+
+            <br><br>
+            <input type="submit" class="rc-button rc-button-submit" value="Submit">
+        </form><br>
+
+      </div>
+    </div>
+
+  </main>
+</div>
+{% endblock %}
