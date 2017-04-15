@@ -37,3 +37,8 @@ def createassign():
     if request.method == "POST" :
         #TODO Write Assignment to database and commit
         return redirect(url_for("assignment.assign"))
+
+@assignment_mod.route("/openassign", methods=["GET", "POST"])
+@login_required
+def openassign():
+    return render_template("assignments/view_assignment.html", role=0, assignments=None)
