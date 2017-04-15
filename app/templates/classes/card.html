@@ -3,15 +3,19 @@
         <h2 class="mdl-card__title-text">{{ class.class_name }}</h2>
     </div>
     <div class="mdl-card__supporting-text text_area" >
-      <!--sem,class code  -->
       <div> <b>Class Code : </b>{{ class.class_code }} </div>
       <div><b> Semester : </b>{{ class.semester }} </div>
+      {% if role == "Creator"%}
+        <div><b> Creator </b></div>
+      {% else %}
+        <div><b> Student </b></div>
+      {% endif %}
       <div > {{ class.description }} </div>
 
 
     </div>
     <div class="mdl-card__actions mdl-card--border">
-        <a href="{{url_for('assignment.assign')}}" class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">
+        <a href="{{url_for('assignment.assign', class_code=class.class_code)}}" class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">
                   View
         </a>
     </div>

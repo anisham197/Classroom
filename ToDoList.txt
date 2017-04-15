@@ -4,8 +4,11 @@ Authentication
 - remember me - Done
 - logout
 
+classes
+-check join table query
+- Nav drawer
+
 Download  mdl css and js
-Fix fab
 
 from passlib.apps import custom_app_context as pwd_context
 pwd_context.encrypt("1234")

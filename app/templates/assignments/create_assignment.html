@@ -29,33 +29,38 @@
                 <input class="mdl-textfield__input" type="text" name="title" placeholder="Title" required>
             </div>
             <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="text" name="max_score" placeholder="Max Score" required>
+                <input class="mdl-textfield__input" type="number" name="max_score" placeholder="Max Score" required>
             </div>
             <div class="mdl-textfield mdl-js-textfield">
-                <input class="mdl-textfield__input" type="number" name="last_date" placeholder="Last Date" required>
+                <input class="mdl-textfield__input" type="date" name="last_date" placeholder="Last Date" required>
             </div>
             <div class="mdl-textfield mdl-js-textfield">
                 <textarea class="mdl-textfield__input" type="text" rows= "4" name="description" placeholder="Description" required></textarea>
             </div>
 
             <div class="mdl-textfield mdl-js-textfield">
+              <!-- why "last_date" mentioned here???? -->
                 <input class="mdl-textfield__input" disabled name="last_date" placeholder="Supported File Formats" >
             </div>
             <div>
                 <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-1">
-                    <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input">
+                    <!-- <input type="hidden" name="doc_file" value=0 > -->
+                    <input type="checkbox" id="checkbox-1" name="doc_file" value=1 class="mdl-checkbox__input">
                     <span class="mdl-checkbox__label">.doc</span>
                 </label>
                 <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-2">
-                    <input type="checkbox" id="checkbox-2" class="mdl-checkbox__input">
+                    <!-- <input type="hidden" name="pdf_file" value=0 > -->
+                    <input type="checkbox" id="checkbox-2" name="pdf_file" value=1 class="mdl-checkbox__input">
                     <span class="mdl-checkbox__label">.pdf</span>
                 </label>
                 <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-3">
-                    <input type="checkbox" id="checkbox-3" class="mdl-checkbox__input">
+                    <!-- <input type="hidden" name="ppt_file" value=0 > -->
+                    <input type="checkbox" id="checkbox-3" name="ppt_file" value=1 class="mdl-checkbox__input">
                     <span class="mdl-checkbox__label">.ppt</span>
                 </label>
                 <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-4">
-                    <input type="checkbox" id="checkbox-4" class="mdl-checkbox__input">
+                    <!-- <input type="hidden" name="zip_file" value=0 > -->
+                    <input type="checkbox" id="checkbox-4" name="zip_file" value=1 class="mdl-checkbox__input">
                     <span class="mdl-checkbox__label">.zip</span>
                 </label>
             </div>

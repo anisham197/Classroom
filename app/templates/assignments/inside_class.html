@@ -10,15 +10,18 @@
 {% include "assign_nav_drawer.html" %}
 
 <main id="main-content" class="mdl-layout__content">
-
-{% if assignments is equalto None %}
-    {% include "no_assignments.html" %}
-{% else %}
+{% if assignments %}
     {% include "all_assignments.html" %}
+
+{% else %}
+    {% include "no_assignments.html" %}
+
 {% endif %}
 
 {% if role is equalto 0 %}
+  {% with class_code=class_code %}
      {% include "add_assign_fab.html" %}
+  {% endwith %}
 {% endif %}
 
 </main>
