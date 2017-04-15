@@ -2,7 +2,6 @@ from app import db
 
 class Assignment(db.Model):
     __tablename__ = "assignment"
-    # assignment_id = db.Column(db.Integer, primary_key = True)
     class_code = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String(255))
     last_date = db.Column(db.Date)
@@ -15,7 +14,6 @@ class Assignment(db.Model):
 
 
     def __init__(self, class_code, title, last_date, max_score, description, doc_file, pdf_file, ppt_file, zip_file):
-        # self.assignment_code = assignment_code
         self.class_code = class_code
         self.title = title
         self.last_date = last_date

@@ -175,6 +175,10 @@ ALTER TABLE `user_classroom`
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 
+--
+-- Table structure for table `assignment`
+--
+
 CREATE TABLE `assignment` (
   `assignment_id` int(11) NOT NULL,
   `class_code` int(11) NOT NULL,
@@ -196,9 +200,9 @@ CREATE TABLE `assignment` (
 -- Indexes for table `assignment`
 --
 ALTER TABLE `assignment`
-  ADD PRIMARY KEY (`assignment_id`,`class_code`),
-  ADD KEY `foreign_class1` (`class_code`),
-  ADD KEY `title` (`title`);
+  ADD PRIMARY KEY (`assignment_id`),
+  ADD KEY `title` (`title`),
+  ADD KEY `class_code` (`class_code`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -217,4 +221,4 @@ ALTER TABLE `assignment`
 -- Constraints for table `assignment`
 --
 ALTER TABLE `assignment`
-  ADD CONSTRAINT `foreign_class1` FOREIGN KEY (`class_code`) REFERENCES `classroom` (`class_code`);
+  ADD CONSTRAINT `foreign_class_assignment` FOREIGN KEY (`class_code`) REFERENCES `classroom` (`class_code`) ON DELETE CASCADE ON UPDATE CASCADE;
