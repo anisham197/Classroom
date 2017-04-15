@@ -173,3 +173,48 @@ ALTER TABLE `user_classroom`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+CREATE TABLE `assignment` (
+  `assignment_id` int(11) NOT NULL,
+  `class_code` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `last_date` date NOT NULL,
+  `max_score` int(11) NOT NULL,
+  `description` text NOT NULL,
+  `doc_file` tinyint(1) NOT NULL DEFAULT '0',
+  `pdf_file` tinyint(1) NOT NULL DEFAULT '0',
+  `ppt_file` tinyint(1) NOT NULL DEFAULT '0',
+  `zip_file` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `assignment`
+--
+ALTER TABLE `assignment`
+  ADD PRIMARY KEY (`assignment_id`,`class_code`),
+  ADD KEY `foreign_class1` (`class_code`),
+  ADD KEY `title` (`title`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `assignment`
+--
+ALTER TABLE `assignment`
+  MODIFY `assignment_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `assignment`
+--
+ALTER TABLE `assignment`
+  ADD CONSTRAINT `foreign_class1` FOREIGN KEY (`class_code`) REFERENCES `classroom` (`class_code`);
