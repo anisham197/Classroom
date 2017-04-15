@@ -12,6 +12,13 @@ classes
 -check join table query
 - Nav drawer
 
+fix queries
+check sessions
+creator and student classrooms
+merge lists classroom user classroom ( )
+
+link to assignment : view assignment
+
 
 
 from passlib.apps import custom_app_context as pwd_context

@@ -26,7 +26,7 @@ def index():
         joined_classes = getJoinedClassroom(session["user_id"], db.session)
         created_classes = getCreatedClassroom(session["user_id"], db.session)
             # x =[]
-            # for (class1 ,user_class) in user_classes :
+            # for (class1 ,user_class) in joined_classes :
             #     x.append(class1)
             #     print ("\n\nyayyaya\n" + str(user_class.user_id) + "\n\n " + class1.subject)
         return render_template("classes/main_class.html", role=user.role, joined_classes=joined_classes, created_classes=created_classes)
