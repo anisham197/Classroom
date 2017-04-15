@@ -41,7 +41,8 @@
 
 .demo-card-square.mdl-card {
 		width: 250px;
-		height: 300px;
+		/*height: 300px;*/
+    line-height: 10px;
 		float: left;
 		margin: 1rem;
 		position: relative;
@@ -53,11 +54,17 @@
 
 .demo-card-square>.mdl-card__title {
 		color: #fff;
+    height: 150px;
     background: linear-gradient(to bottom right,#00695C, #009688,#80CBC4);
 }
 
 .demo-card-square>.mdl-card__accent {
 		background: #ff9800;
+}
+
+.text_area{
+  height: 70px;
+  line-height: 10px;
 }
 
 #add_class_fab, #join_class_fab {
@@ -74,7 +81,6 @@
     display: inline-block;
 }
 
-/* Dropdown Content (Hidden by Default) */
 .dropdown-content {
     display: none;
     position: fixed;
@@ -85,7 +91,6 @@
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
-
 /* Links inside the dropdown */
 .dropdown-content a {
     color: black;
@@ -109,11 +114,6 @@
 #form_main {
     background: url('/static/resources/images/backdrop.jpg') center/cover;
 }
-
-/*#assign_back {
-    background: url('/static/resources/images/gr_board.jpg') center/cover;
-    height: 200px;
-}*/
 
 .rc-button, .rc-button:visited {
     display: inline-block;

@@ -1,12 +1,27 @@
 <div class="page-content">
-        <!-- Your content goes here -->
-
         <div id="class_body" class="class_grid">
             <!-- Square card -->
-            {% for class in classes %}
-              {% include "card.html" %}
-              <!-- {% for class in x %} -->
-              <!-- {% endfor %} -->
-            {% endfor %}
+            <div>
+              {% if role is equalto 0 %}
+                   <!-- <p>classes created </p> -->
+                   <!-- <br> -->
+                   {% for class in created_classes %}
+                      {% with role="Creator" %}
+                        {% include "card.html" %}
+                      {% endwith %}
+                   {% endfor %}
+                   <!-- <br> -->
+              {% endif %}
+            </div>
+
+            <div>
+              <!-- <p> Classes joined </p> -->
+              {% for class in joined_classes %}
+                {% include "card.html" %}
+                <!-- {% for class in x %} -->
+                <!-- {% endfor %} -->
+              {% endfor %}
+            </div>
+
         </div>
 </div>

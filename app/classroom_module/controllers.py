@@ -21,47 +21,38 @@ TEACHER = 0
 @login_required
 def index():
     if request.method == "GET" :
-
-        #TODO Check for existing classes
+        # Check for existing classes
         user = getUserByUserID(session["user_id"])
-
-        if ( getUser_ClassroomByID(session["user_id"]) == None) :
-            no_classes = 1;
-            user_classes = None;
-        else:
-            no_classes = 0;
-            user_classes = getUserClassroom(session["user_id"], db.session)
-            # x = session.query(User, Document, DocumentsPermissions).join(Document).join(DocumentsPermissions)
-            # if classes == None and user.role == 1:
-            #     print("\n\n\njoin class\n\n\n\n")
-            #     return render_template("classes/classroom.html", role=user.role, classes=classes)
-            # else:
-            # print("\n\namishaaaaa \n\n" + str(user_classes))
+        joined_classes = getJoinedClassroom(session["user_id"], db.session)
+        created_classes = getCreatedClassroom(session["user_id"], db.session)
             # x =[]
             # for (class1 ,user_class) in user_classes :
             #     x.append(class1)
             #     print ("\n\nyayyaya\n" + str(user_class.user_id) + "\n\n " + class1.subject)
-        return render_template("classes/main_class.html", role=user.role, classes=user_classes, no_classes=no_classes)
+        return render_template("classes/main_class.html", role=user.role, joined_classes=joined_classes, created_classes=created_classes)
 
 
     if request.method == "POST" :
+        # Check whether the entered class code is valid
         if (getClassroomByCode(request.form["class_code"]) == None ) :
             return render_template("auth/no_access.html", msg="Incorrect Class Code")
 
+        # Check whether student is already a part of the classroom
         if (getUser_ClassroomByCodeAndID(session["user_id"],request.form["class_code"]) != None):
             return render_template("auth/no_access.html", msg="Already part of this class")
 
+        # Add the student to the classroom
         user_class = User_Classroom( session["user_id"], request.form["class_code"], STUDENT)
         db.session.add(user_class)
         db.session.commit()
-        #TODO ADD new Classes
         return redirect(url_for("classroom.index"))
+
 
 @classroom_mod.route("/createclass", methods=["GET", "POST"])
 @login_required
 def createclass():
-
     user = getUserByUserID(session["user_id"])
+    # Only teachers can create class
     if  user.role != TEACHER :
         return render_template("auth/no_access.html",msg="You do not have access to this page !")
 
@@ -70,8 +61,7 @@ def createclass():
         invalid = True
         while(invalid):
             code = random.randint(10000, 99999)
-            class1 = getClassroomByCode( code )
-            if class1 == None :
+            if getClassroomByCode(code) == None :
                 invalid = False
 
         session["class_code"] = code
