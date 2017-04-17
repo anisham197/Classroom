@@ -17,7 +17,7 @@
 .demo-card-wide > .mdl-card__title {
   color: #fff;
   height: 250px;
-  background: url('/static/resources/images/board.jpg');
+  background: url('/static/resources/images/rsz_board.jpg');
   background-size: 100%;
 }
 .demo-card-wide > .mdl-card__menu {
@@ -42,7 +42,6 @@
 .demo-card-square.mdl-card {
 		width: 250px;
 		/*height: 300px;*/
-    line-height: 10px;
 		float: left;
 		margin: 1rem;
 		position: relative;
@@ -64,7 +63,7 @@
 
 .text_area{
   height: 70px;
-  line-height: 10px;
+  /*line-height: 10px;*/
 }
 
 #add_class_fab, #join_class_fab {

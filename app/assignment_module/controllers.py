@@ -27,6 +27,8 @@ def assign():
 
         assignments = getAssignmentByClassCode(session["class_code"])
         # TODO : Remove count later
+        print ("\n\n\n\nsession " +session["class_code"])
+        print(assignments)
         count = x(session["class_code"])
         print("\n\ncount " + str(count))
 
@@ -52,8 +54,6 @@ def createassign():
 
     print("\n\n class_code create assign " + str(session["class_code"]) + "\n\n")
 
-    #TODO check role of user for that particular classroom, if not creator then display no_access
-
     if request.method == "GET" :
         return render_template("assignments/create_assignment.html")
 
@@ -71,7 +71,6 @@ def createassign():
         new_assignment = Assignment(session["class_code"], request.form["title"], request.form["last_date"] , request.form["max_score"], request.form["description"], doc_file, pdf_file, ppt_file, zip_file)
         db.session.add(new_assignment)
         db.session.commit()
-
         return redirect(url_for("assignment.assign", class_code=session["class_code"]))
 
 @assignment_mod.route("/openassign", methods=["GET", "POST"])

@@ -7,7 +7,7 @@
                    <!-- <br> -->
                    {% for class in created_classes %}
                       {% with role="Creator" %}
-                        {% include "card.html" %}
+                        {% include "class_card.html" %}
                       {% endwith %}
                    {% endfor %}
                    <!-- <br> -->
@@ -17,7 +17,7 @@
             <div>
               <!-- <p> Classes joined </p> -->
               {% for class in joined_classes %}
-                {% include "card.html" %}
+                {% include "class_card.html" %}
                 <!-- {% for class in x %} -->
                 <!-- {% endfor %} -->
               {% endfor %}
