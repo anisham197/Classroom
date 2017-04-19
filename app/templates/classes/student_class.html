@@ -8,31 +8,21 @@
 {% block title %} Classroom {% endblock %}
 
 {% block body %}
-<!-- Check the role and add the nav_drawer accordingly -->
-<!-- TEACHERS = 0, STUDENTS = 1  -->
-{% if role is equalto 0 %}
-  {% include "class_teacher_nav_drawer.html" %}
-{% else %}
-  {% include "class_student_nav_drawer.html" %}
-{% endif %}
+
+{% include "class_student_nav_drawer.html" %}
 
 <main id="main-content" class="mdl-layout__content">
 
 <!-- TODO : check -->
 <!-- Check the role and whether the user has joined/created any classes -->
-{% if role is equalto 0 %}
-  {% include "classes.html" %}
-  {% include "add_class_fab.html" %}
-{% endif %}
-
-{% if role is equalto 1 %}
-  {% if joined_classes %}
+  {% if classes %}
+    {# with classes=joined_classes#}
        {% include "classes.html" %}
+    {# endwith #}
   {% else %}
       {% include "no_classes.html" %}
   {% endif %}
   {% include "join_class_fab.html" %}
-{% endif %}
 
 {% include "join_class_dialog.html" %}
 </main>

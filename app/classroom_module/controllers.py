@@ -22,15 +22,18 @@ TEACHER = 0
 def index():
     if request.method == "GET" :
         # Check for existing classes
-        user = getUserByUserID(session["user_id"])
+        role = getUserByUserID(session["user_id"]).role
         joined_classes = getJoinedClassroom(session["user_id"], db.session)
         created_classes = getCreatedClassroom(session["user_id"], db.session)
             # x =[]
             # for (class1 ,user_class) in joined_classes :
             #     x.append(class1)
             #     print ("\n\nyayyaya\n" + str(user_class.user_id) + "\n\n " + class1.subject)
-        return render_template("classes/main_class.html", role=user.role, joined_classes=joined_classes, created_classes=created_classes)
-
+        if role == 1 :
+            return render_template("classes/student_class.html", role=  role, classes=joined_classes)
+        else :
+            return render_template("classes/teacher_class.html", role=  role, classes=created_classes)
+        # return render_template("classes/main_class.html", role=role, joined_classes=joined_classes, created_classes=created_classes)
 
     if request.method == "POST" :
         # Check whether the entered class code is valid
@@ -38,8 +41,13 @@ def index():
             return render_template("auth/no_access.html", msg="Incorrect Class Code")
 
         # Check whether student is already a part of the classroom
-        if (getUser_ClassroomByCodeAndID(session["user_id"],request.form["class_code"]) != None):
-            return render_template("auth/no_access.html", msg="Already part of this class")
+        user_class = getUser_ClassroomByCodeAndID(session["user_id"],request.form["class_code"])
+        if (user_class != None):
+            if user_class.role == STUDENT :
+                return render_template("auth/no_access.html", msg="Already part of this class")
+            else :
+                return render_template("auth/no_access.html", msg="You are creator of this class")
+
 
         # Add the student to the classroom
         user_class = User_Classroom( session["user_id"], request.form["class_code"], STUDENT)
@@ -47,6 +55,16 @@ def index():
         db.session.commit()
         return redirect(url_for("classroom.index"))
 
+@classroom_mod.route("/joined_classes", methods=["GET", "POST"])
+@login_required
+def joined_classes():
+    if request.method == "GET" :
+        # Check for existing classes
+        role = getUserByUserID(session["user_id"]).role
+        joined_classes = getJoinedClassroom(session["user_id"], db.session)
+        if role == 0 :
+            return render_template("classes/teacher_class.html", role=  role, classes=joined_classes)
+        # return render_template("classes/main_class.html", role=role, joined_classes=joined_classes, created_classes=created_classes)
 
 @classroom_mod.route("/createclass", methods=["GET", "POST"])
 @login_required

@@ -2,25 +2,28 @@
         <div id="class_body" class="class_grid">
             <!-- Square card -->
             <div>
-              {% if role is equalto 0 %}
-                   <!-- <p>classes created </p> -->
-                   <!-- <br> -->
+              {% for class in classes %}
+                {% include "class_card.html" %}
+                <!-- {% for class in x %} -->
+                <!-- {% endfor %} -->
+              {% endfor %}
+
+              <!-- old part -->
+              {# if role is equalto 0 %}
                    {% for class in created_classes %}
                       {% with role="Creator" %}
                         {% include "class_card.html" %}
                       {% endwith %}
                    {% endfor %}
-                   <!-- <br> -->
-              {% endif %}
-            </div>
 
-            <div>
-              <!-- <p> Classes joined </p> -->
+              {% else %}
               {% for class in joined_classes %}
                 {% include "class_card.html" %}
                 <!-- {% for class in x %} -->
                 <!-- {% endfor %} -->
               {% endfor %}
+              {% endif #}
+
             </div>
 
         </div>
