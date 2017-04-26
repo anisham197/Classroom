@@ -4,22 +4,13 @@ Authentication
 - remember me - Done
 - logout
 
-
 find background
 sort checkboxes - layout and validation
+List All Assignments - query
 
 classes
--check join table query
-- Nav drawer
-
-fix queries
-check sessions
-creator and student classrooms
-merge lists classroom user classroom ( )
-
-link to assignment : view assignment
-
-
+-check join table query - merge two tables ?
+- check session class_code variable ( how to pass around ?)
 
 from passlib.apps import custom_app_context as pwd_context
 pwd_context.encrypt("1234")

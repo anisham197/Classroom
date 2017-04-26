@@ -5,12 +5,7 @@
     <div class="mdl-card__supporting-text text_area" >
       <div> <b>Class Code : </b>{{ class.class_code }} </div>
       <div><b> Semester : </b>{{ class.semester }} </div>
-      {% if role == "Creator"%}
-        <div><b> Creator </b></div>
-      {% else %}
-        <div><b> Student </b></div>
-      {% endif %}
-      <div > {{ class.description }} </div>
+     <div > {{ class.description }} </div>
 
 
     </div>
