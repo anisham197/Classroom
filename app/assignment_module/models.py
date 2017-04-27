@@ -2,7 +2,8 @@ from app import db
 
 class Assignment(db.Model):
     __tablename__ = "assignment"
-    class_code = db.Column(db.Integer, primary_key = True)
+    assignment_id = db.Column(db.Integer, primary_key = True)
+    class_code = db.Column(db.Integer)
     title = db.Column(db.String(255))
     last_date = db.Column(db.Date)
     max_score = db.Column(db.Integer)

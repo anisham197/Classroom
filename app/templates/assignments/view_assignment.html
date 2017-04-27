@@ -23,24 +23,35 @@
            </div>
 
           <div id="view_assign">
-           <div>
-               <h2>Java Assignment</h2>
-               <h4>Introduction</h4>
-               <div>
+           <!-- <div> -->
+               <h2>{{assignment.title}}</h2>
+               <h4>Description</h4>
+               <div  class="assign_text">
                    <p>
-                     Excepteur reprehenderit sint exercitation ipsum consequat qui sit id velit elit. Velit anim eiusmod labore sit amet. Voluptate voluptate irure occaecat deserunt incididunt esse in. Sunt velit aliquip sunt elit ex nulla reprehenderit qui ut eiusmod ipsum do. Duis veniam reprehenderit laborum occaecat id proident nulla veniam. Duis enim deserunt voluptate aute veniam sint pariatur exercitation. Irure mollit est sit labore est deserunt pariatur duis aute laboris cupidatat. Consectetur consequat esse est sit veniam adipisicing ipsum enim irure.
+                     {{assignment.description}}
                    </p>
                </div>
 
-               <h4>Instructions</h4>
-
-               <div>
-                   <p>
-                       Excepteur reprehenderit sint exercitation ipsum consequat qui sit id velit elit. Velit anim eiusmod labore sit amet. Voluptate voluptate irure occaecat deserunt incididunt esse in. Sunt velit aliquip sunt elit ex nulla reprehenderit qui ut eiusmod ipsum do. Duis veniam reprehenderit laborum occaecat id proident nulla veniam. Duis enim deserunt voluptate aute veniam sint pariatur exercitation. Irure mollit est sit labore est deserunt pariatur duis aute laboris cupidatat. Consectetur consequat esse est sit veniam adipisicing ipsum enim irure.
-                   </p>
+               <h4>Details</h4>
+               <div class="assign_text">
+                   <p> Last Date: {{assignment.last_date}}</p>
+                   <p> Maximum Score: {{assignment.max_score}}</p>
+                   <p> File Formats:
+                       {% if assignment.pdf_file is equalto 1 %}
+                        .pdf
+                        {% endif %}
+                        {% if assignment.doc_file is equalto 1 %}
+                         .doc
+                         {% endif %}
+                         {% if assignment.ppt_file is equalto 1 %}
+                          .ppt
+                          {% endif %}
+                          {% if assignment.zip_file is equalto 1 %}
+                           .zip
+                           {% endif %}
                </div>
 
-           </div>
+           <!-- </div> -->
        </div>
    </div>
    </div>

@@ -21,20 +21,7 @@ def assign():
         session["class_code"] = request.args.get('class_code')
         # Get role of the user for the selected class
         role = getUser_ClassroomByCodeAndID(session["user_id"], session["class_code"]).role
-
-        print("\n\n role " + str(role) + "\n\n")
-        print("\nclass_code " + str(class_code) + "\n\n")
-
         assignments = getAssignmentByClassCode(session["class_code"])
-        # TODO : Remove count later
-        print ("\n\n\n\nsession " +session["class_code"])
-        print(assignments)
-        count = x(session["class_code"])
-        print("\n\ncount " + str(count))
-
-        for assignment in assignments :
-            print("\n\n title " + assignment.title)
-        print("\n\n done\n\n")
         return render_template("assignments/inside_class.html", role=role, assignments=assignments)
 
 @assignment_mod.route("/createassign", methods=["GET", "POST"])
@@ -76,4 +63,13 @@ def createassign():
 @assignment_mod.route("/openassign", methods=["GET", "POST"])
 @login_required
 def openassign():
-    return render_template("assignments/view_assignment.html", role=0, assignments=None)
+    if request.method == "GET" :
+        session["assignment_id"] = request.args.get('id')
+        # get role and assignment details
+        role = getUser_ClassroomByCodeAndID(session["user_id"], session["class_code"]).role
+        assignment = getAssignmentByID(session["assignment_id"])
+
+        return render_template("assignments/view_assignment.html", role = role, assignment = assignment)
+
+    #if request.method == "POST":
+        #Upload files ?

@@ -82,7 +82,12 @@
 }
 
 #view_assign {
-    padding: 32px;
+    padding-left: 32px;
+    width: 1200px;
+}
+
+.assign_text {
+    width: 768px;
     text-align:justify;
 }
 
