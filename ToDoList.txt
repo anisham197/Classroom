@@ -6,7 +6,8 @@ Authentication
 
 find background
 sort checkboxes - layout and validation
-List All Assignments - query
+back buttons and navigation
+dynamic no_classrooms/no_assignments page
 
 classes
 -check join table query - merge two tables ?

@@ -8,7 +8,7 @@
       <div> {{assignment.description}} </div>
     </div>
     <div class="mdl-card__actions mdl-card--border">
-        <a href="{{url_for("assignment.openassign")}}" class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">
+        <a href="{{url_for('assignment.openassign', id=assignment.assignment_id)}}" class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">
           View
         </a>
     </div>
