@@ -28,9 +28,8 @@ def getJoinedClassroom(user_id, session) :
 def getCreatedClassroom(user_id, session) :
     return session.query(Classroom).join(User_Classroom, User_Classroom.class_code == Classroom.class_code).filter(User_Classroom.user_id == user_id).filter(User_Classroom.role == 0).all()
 
-#fix it
 def getAssignmentByClassCode(class_code) :
     return Assignment.query.filter(Assignment.class_code == class_code).all()
 
-def x(class_code) :
-    return Assignment.query.filter(Assignment.class_code == class_code).count()
+def getAssignmentByID(id):
+    return Assignment.query.filter(Assignment.assignment_id == id).first()
