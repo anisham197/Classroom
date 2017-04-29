@@ -8,8 +8,16 @@
       <div> {{assignment.description}} </div>
     </div>
     <div class="mdl-card__actions mdl-card--border">
-        <a href="{{url_for('assignment.openassign', id=assignment.assignment_id)}}" class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">
-          View
-        </a>
+        {% if role is equalto 0 %}
+        <a href="{{url_for('assignment.editassign', id=assignment.assignment_id)}}" class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">
+          Edit  </a>
+         <a href="" class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">
+          View  </a>
+
+         {% elif role is equalto 1 %}
+         <a href="{{url_for('assignment.openassign', id=assignment.assignment_id)}}" class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">
+            View  </a>
+
+        {% endif %}
     </div>
 </div>

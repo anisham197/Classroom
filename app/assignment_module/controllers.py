@@ -54,7 +54,7 @@ def createassign():
             ppt_file = 0
         if request.form.get('zip_file') == None :
             zip_file = 0
-        # print("\n\n class_code " + str(class_code) + "\ntitle " + request.form["title"] + "\ndate " + request.form["last_date"] + "\ndoc " + request.form.get('doc_file') + "\n\n")
+
         new_assignment = Assignment(session["class_code"], request.form["title"], request.form["last_date"] , request.form["max_score"], request.form["description"], doc_file, pdf_file, ppt_file, zip_file)
         db.session.add(new_assignment)
         db.session.commit()
@@ -71,5 +71,39 @@ def openassign():
 
         return render_template("assignments/view_assignment.html", role = role, assignment = assignment)
 
-    #if request.method == "POST":
+        #if request.method == "POST":
         #Upload files ?
+
+@assignment_mod.route("/editassign", methods=["GET", "POST"])
+@login_required
+def editassign():
+    if request.method == "GET" :
+        session["assignment_id"] = request.args.get('id')
+        # get role and assignment details
+        role = getUser_ClassroomByCodeAndID(session["user_id"], session["class_code"]).role
+        assignment = getAssignmentByID(session["assignment_id"])
+        return render_template("assignments/edit_assignment.html", role = role, assignment = assignment)
+
+    if request.method == "POST" :
+        doc_file = pdf_file = ppt_file = zip_file = 1
+        if request.form.get('doc_file') == None :
+            doc_file = 0
+        if request.form.get('pdf_file') == None :
+            pdf_file = 0
+        if request.form.get('ppt_file') == None :
+            ppt_file = 0
+        if request.form.get('zip_file') == None :
+            zip_file = 0
+
+        assignment = getAssignmentByID(session["assignment_id"])
+        assignment.class_code = session["class_code"]
+        assignment.title = request.form["title"]
+        assignment.last_date = request.form["last_date"]
+        assignment.max_score = request.form["max_score"],
+        assignment.description = request.form["description"]
+        assignment.doc_file = doc_file
+        assignment.pdf_file = pdf_file
+        assignment.ppt_file = ppt_file
+        assignment.zip_file = zip_file
+        db.session.commit()
+        return redirect(url_for("assignment.assign", class_code=session["class_code"]))

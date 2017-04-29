@@ -57,9 +57,11 @@
    </div>
 
   <!-- Accent-colored raised button with ripple -->
+  {% if role is equalto 1 %}
   <button id="upload" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
       Upload Files
   </button>
+  {% endif %}
 </main>
 
 {% endblock %}
