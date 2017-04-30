@@ -222,3 +222,54 @@ ALTER TABLE `assignment`
 --
 ALTER TABLE `assignment`
   ADD CONSTRAINT `foreign_class_assignment` FOREIGN KEY (`class_code`) REFERENCES `classroom` (`class_code`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+
+  --
+  -- Table structure for table `submission`
+  --
+
+  CREATE TABLE `submission` (
+    `id` int(11) NOT NULL,
+    `user_id` int(11) NOT NULL,
+    `class_code` int(11) NOT NULL,
+    `assignment_id` int(11) NOT NULL,
+    `timestamp` timestamp NOT NULL,
+    `grade` varchar(50) NOT NULL ,
+    `file_format` varchar(50) NOT NULL,
+    `filename` varchar(255) NOT NULL,
+    `filepath` varchar(1000) NOT NULL
+  ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+  --
+  -- Indexes for dumped tables
+  --
+
+  --
+  -- Indexes for table `submission`
+  --
+  ALTER TABLE `submission`
+    ADD PRIMARY KEY (`id`),
+    ADD KEY `user_id` (`user_id`),
+    ADD KEY `class_code` (`class_code`),
+    ADD KEY `assignment_id` (`assignment_id`);
+
+  --
+  -- AUTO_INCREMENT for dumped tables
+  --
+
+  --
+  -- AUTO_INCREMENT for table `submission`
+  --
+  ALTER TABLE `submission`
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  --
+  -- Constraints for dumped tables
+  --
+
+  --
+  -- Constraints for table `submission`
+  --
+  ALTER TABLE `submission`
+    ADD CONSTRAINT `fk_assignment` FOREIGN KEY (`assignment_id`) REFERENCES `assignment` (`assignment_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `fk_class` FOREIGN KEY (`class_code`) REFERENCES `classroom` (`class_code`) ON DELETE CASCADE ON UPDATE CASCADE,
+    ADD CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;

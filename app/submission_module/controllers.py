@@ -2,10 +2,13 @@ import os
 from flask import Flask, flash, redirect, render_template, request, session, url_for, Blueprint, send_from_directory
 from flask_session import Session
 from werkzeug import secure_filename
+from datetime import datetime
+
 from app.helpers import *
 from app import db
 from app.queries import *
 from app import app
+from app.submission_module.models import Submission
 
 # Define the blueprint
 submission_mod = Blueprint('submission', __name__, url_prefix='/submissions' , static_folder = '../static', template_folder = '../templates/submissions')
@@ -38,15 +41,40 @@ def upload():
 
         file = request.files['file']
         # Check if the file is one of the allowed types/extensions
+        #TODO handle else condition
         if file and allowed_file(file.filename, extensions):
             # Make the filename safe, remove unsupported chars
             filename = secure_filename(username + "_" + file.filename)
             # Move the file form the temporal folder to the upload folder we setup
-            file.save(os.path.join( os.path.abspath(app.config['UPLOAD_FOLDER']), filename))
+            abs_filepath = os.path.join(os.path.abspath(app.config['UPLOAD_FOLDER']), str(id), filename)
+            #Beware of Race Condition
+            directory = os.path.dirname(abs_filepath)
+            if not os.path.exists(directory):
+                os.makedirs(directory)
+            # Save file
+            file.save(abs_filepath)
 
-            #return redirect(url_for('submission.uploaded_file', filename=filename))
-            return redirect(url_for('assignment.viewassign'))
+            submission = getSubmissionByUserIDandAssignID(session['user_id'], id)
+            grade = '-'
+            file_format = filename.rsplit('.', 1)[1]
+            rel_filepath = os.path.join(app.config['UPLOAD_FOLDER'], str(id))
+            timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            if submission == None:
+                new_submission = Submission(timestamp, session["user_id"], assignment.class_code, id, grade, file_format, filename, rel_filepath)
+                db.session.add(new_submission)
+                db.session.commit()
+            else :
+                submission.timestamp = timestamp
+                submission.file_format = file_format
+                submission.filename = filename
+                submission.filepath = rel_filepath
+                db.session.commit()
+
+            return redirect(url_for('submission.uploaded_file', filename=filename, assign_id=id))
+            #return redirect(url_for('assignment.viewassign'))
 
 @submission_mod.route('/uploads/<filename>')
 def uploaded_file(filename):
-    return send_from_directory(os.path.abspath(app.config['UPLOAD_FOLDER']), filename)
+    assign_id = request.args.get('assign_id')
+    submission = getSubmissionByUserIDandAssignID(session['user_id'], assign_id)
+    return send_from_directory(os.path.abspath(submission.filepath), submission.filename)
