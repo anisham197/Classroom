@@ -60,9 +60,9 @@ def createassign():
         db.session.commit()
         return redirect(url_for("assignment.assign", class_code=session["class_code"]))
 
-@assignment_mod.route("/openassign", methods=["GET", "POST"])
+@assignment_mod.route("/viewassign", methods=["GET", "POST"])
 @login_required
-def openassign():
+def viewassign():
     if request.method == "GET" :
         session["assignment_id"] = request.args.get('id')
         # get role and assignment details

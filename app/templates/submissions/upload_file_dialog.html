@@ -1,0 +1,16 @@
+<button id="upload" type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+    Upload Files
+</button>
+
+<dialog id = "upload_file_dialog" class="mdl-dialog">
+    <h5>Upload a File</h5><br>
+    <form method="POST" action="{{url_for("submission.upload", id=assignment.assignment_id)}}" enctype="multipart/form-data">
+        <div>
+          <input type="file" name="file"><br/><br/>
+        </div>
+      <div class="mdl-dialog__actions">
+        <input type="submit" value="Upload" class="mdl-button upload"></button>
+        <button type="button" class="mdl-button cancel">Cancel</button>
+      </div>
+    </form>
+</dialog>

@@ -23,11 +23,13 @@ db = SQLAlchemy(app)
 from app.auth_module.controllers import auth_mod as auth_module
 from app.classroom_module.controllers import classroom_mod as classroom_module
 from app.assignment_module.controllers import assignment_mod as assignment_module
+from app.submission_module.controllers import submission_mod as submission_module
 
 # Register blueprint(s)
 app.register_blueprint(auth_module)
 app.register_blueprint(classroom_module)
 app.register_blueprint(assignment_module)
+app.register_blueprint(submission_module)
 # app.register_blueprint(xyz_module)
 # ..
 

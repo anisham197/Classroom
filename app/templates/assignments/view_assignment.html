@@ -23,45 +23,29 @@
            </div>
 
           <div id="view_assign">
-           <!-- <div> -->
                <h2>{{assignment.title}}</h2>
                <h4>Description</h4>
                <div  class="assign_text">
-                   <p>
-                     {{assignment.description}}
-                   </p>
+                   <p> {{assignment.description}}</p>
                </div>
-
                <h4>Details</h4>
                <div class="assign_text">
                    <p> Last Date: {{assignment.last_date}}</p>
                    <p> Maximum Score: {{assignment.max_score}}</p>
                    <p> File Formats:
-                       {% if assignment.pdf_file is equalto 1 %}
-                        .pdf
-                        {% endif %}
-                        {% if assignment.doc_file is equalto 1 %}
-                         .doc
-                         {% endif %}
-                         {% if assignment.ppt_file is equalto 1 %}
-                          .ppt
-                          {% endif %}
-                          {% if assignment.zip_file is equalto 1 %}
-                           .zip
-                           {% endif %}
+                       {% if assignment.pdf_file is equalto 1 %} .pdf {% endif %}
+                       {% if assignment.doc_file is equalto 1 %} .doc {% endif %}
+                       {% if assignment.ppt_file is equalto 1 %} .ppt {% endif %}
+                       {% if assignment.zip_file is equalto 1 %} .zip {% endif %}
                </div>
-
-           <!-- </div> -->
+           </div>
        </div>
-   </div>
    </div>
 
   <!-- Accent-colored raised button with ripple -->
   {% if role is equalto 1 %}
-  <button id="upload" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-      Upload Files
-  </button>
+        {% include "./submissions/upload_file_dialog.html" %}
   {% endif %}
 </main>
-
+<script src="{{ url_for('static', filename='submission.js') }}" type= "text/javascript" ></script>
 {% endblock %}
