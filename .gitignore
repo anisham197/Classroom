@@ -1,2 +1,7 @@
 *.pyc
-app/uploads/*
+app/uploads/*.pdf
+app/uploads/*.zip
+app/uploads/*.ppt
+app/uploads/*.pptx
+app/uploads/*.doc
+app/uploads/*.docx
