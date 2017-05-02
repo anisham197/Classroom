@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block head %}
+<link href="{{ url_for('static', filename='assignment.css') }}" rel="stylesheet" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.teal-amber.min.css">
+{% endblock %}
+{% block title %} View Assignment {% endblock %}
+
+{% block body %}
+{% include "assign_nav_drawer.html" %}
+<table id="submission_table" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+    <thead>
+        <tr>
+          <th class="mdl-data-table__cell--non-numeric">S No.</th>
+            <th>USN</th>
+            <th>Name</th>
+            <th>File</th>
+            <th>Time</th>
+            <th>Grade</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td data-label="S No." class="mdl-data-table__cell--non-numeric table_column_1">111</td>
+         <td data-label="USN">1MS14IS004</td>
+         <td data-label="Name">AMISHA AGRWAL</td>
+         <td data-label="File">JAVA</td>
+         <td data-label="Time">12/04/2017</td>
+         <td data-label="Grade">Ungraded</td>
+        </tr>
+        <tr>
+          <td data-label="S No." class="mdl-data-table__cell--non-numeric">112</td>
+         <td data-label="USN">1MS14IS098</td>
+         <td data-label="Name">Padhavi Gowda</td>
+         <td data-label="File">Python</td>
+         <td data-label="Time">22/04/2017</td>
+         <td data-label="Grade">15/20</td>
+        </tr>
+        <tr>
+          <td data-label="S No." class="mdl-data-table__cell--non-numeric">113</td>
+           <td data-label="USN">1MS14IS099</td>
+           <td data-label="Name">Utkarsha</td>
+           <td data-label="File">Bioinformaics</td>
+           <td data-label="Time">11/02/2019</td>
+           <td data-label="Grade">20/20</td>
+        </tr>
+    </tbody>
+</table>
+
+{% endblock %}

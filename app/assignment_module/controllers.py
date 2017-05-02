@@ -39,7 +39,7 @@ def createassign():
     # if class_code == None :
     #     return render_template("auth/no_access.html", msg="ERROR!! Class code is null!")
 
-    print("\n\n class_code create assign " + str(session["class_code"]) + "\n\n")
+    # print("\n\n class_code create assign " + str(session["class_code"]) + "\n\n")
 
     if request.method == "GET" :
         return render_template("assignments/create_assignment.html")
@@ -107,3 +107,10 @@ def editassign():
         assignment.zip_file = zip_file
         db.session.commit()
         return redirect(url_for("assignment.assign", class_code=session["class_code"]))
+
+
+@assignment_mod.route("/viewassign", methods=["GET", "POST"])
+@login_required
+def viewassign():
+    if request.method == "GET" :
+            return render_template("assignments/view_assignment_teacher.html")    
