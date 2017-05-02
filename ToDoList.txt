@@ -5,9 +5,10 @@ Authentication
 - logout
 
 find background
-sort checkboxes - layout and validation
+sort checkboxes - layout and validation ( default values in db)
 back buttons and navigation
 dynamic no_classrooms/no_assignments page
+.pyc files in gitignore
 
 classes
 -check join table query - merge two tables ?

@@ -49,10 +49,12 @@
         zip
 
 7) Submissions
+    id
     user_id (FK to User.id)   [index]
     assignment_id (FK to Assignment.id)   [index]
     class-code (FK to Classroom.class_code) [index]
     timestamp
-    file_format
     grade
-    file
+    file_format
+    filename
+    filepath

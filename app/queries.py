@@ -2,6 +2,7 @@
 from app.auth_module.models import User, Student
 from app.classroom_module.models import Classroom, User_Classroom
 from app.assignment_module.models import Assignment
+from app.submission_module.models import Submission
 
 def getUserByUsername(username) :
     return User.query.filter(User.username == username).first()
@@ -33,3 +34,6 @@ def getAssignmentByClassCode(class_code) :
 
 def getAssignmentByID(id):
     return Assignment.query.filter(Assignment.assignment_id == id).first()
+
+def getSubmissionByUserIDandAssignID(user_id, assignment_id):
+    return Submission.query.filter(Submission.user_id == user_id).filter(Submission.assignment_id == assignment_id).first()

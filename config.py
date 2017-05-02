@@ -6,6 +6,7 @@ DEBUG = True
 # Define the application directory
 import os
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+UPLOAD_FOLDER = "app/uploads/"
 
 # configure session to use filesystem (instead of signed cookies)
 SESSION_FILE_DIR = gettempdir()

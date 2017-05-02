@@ -11,10 +11,12 @@
         {% if role is equalto 0 %}
         <a href="{{url_for('assignment.editassign', id=assignment.assignment_id)}}" class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">
           Edit  </a>
-        <a href="{{url_for('assignment.viewassign', role=role)}}" class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">
+        <a href="{{url_for('assignment.viewtable')}}" class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">
           View  </a>
-        {% elif role is equalto 1 %}
-        <a href="{{url_for('assignment.openassign', id=assignment.assignment_id)}}" class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">
-            View  </a> {% endif %}
+
+         {% elif role is equalto 1 %}
+         <a href="{{url_for('assignment.viewassign', id=assignment.assignment_id)}}" class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">
+            View  </a>
+        {% endif %}
     </div>
 </div>
