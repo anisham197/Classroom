@@ -1,18 +1,24 @@
 Authentication
 - form validation : usn, email, password strength
 - forgot password
-- remember me - Done
-- logout
+- flash message colour
+
 
 find background
-sort checkboxes - layout and validation ( default values in db)
-back buttons and navigation
-dynamic no_classrooms/no_assignments page
-.pyc files in gitignore
+sort checkboxes - layout and validation ( default values in db )
+back buttons and navigation (Done)
+.pyc files in gitignore - Done
 
 classes
--check join table query - merge two tables ?
+- classes name
+- refactor templates ( clean up )
+- check join table query - merge two tables ?
 - check session class_code variable ( how to pass around ?)
+
+submissions
+- view submission after upload ( name )
+- delete files...
+
 
 from passlib.apps import custom_app_context as pwd_context
 pwd_context.encrypt("1234")

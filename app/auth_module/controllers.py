@@ -37,10 +37,11 @@ def login():
         # remember which user has logged in
         session["user_id"] = user.id
 
+        session["name"] = getNamebyIDandRole(user.id, user.role).name
+
         # redirect user to home page
         flash("You are logged in !", 'info')
         return redirect(url_for('classroom.index'))
-        # return render_template("classes/classroom.html")
 
 @auth_mod.route("/signup", methods=["GET", "POST"])
 def signup():
@@ -86,3 +87,9 @@ def signup():
 
         flash("You have successfully Signed Up !", 'info')
         return render_template("auth/login.html")
+
+@auth_mod.route("/logout", methods=["GET"])
+def logout():
+    # forget any user_id
+    session.clear()
+    return render_template("auth/login.html")

@@ -30,9 +30,9 @@ def index():
             #     x.append(class1)
             #     print ("\n\nyayyaya\n" + str(user_class.user_id) + "\n\n " + class1.subject)
         if role == 1 :
-            return render_template("classes/student_class.html", role=  role, classes=joined_classes)
+            return render_template("classes/student_class.html", role=role, classes=joined_classes)
         else :
-            return render_template("classes/teacher_class.html", role=  role, classes=created_classes)
+            return render_template("classes/teacher_class.html", role=role, classes=created_classes)
         # return render_template("classes/main_class.html", role=role, joined_classes=joined_classes, created_classes=created_classes)
 
     if request.method == "POST" :
