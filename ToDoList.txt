@@ -2,16 +2,14 @@ Authentication
 - form validation : usn, email, password strength
 - forgot password
 - flash message colour
-
+- Add branches
 
 find background
-sort checkboxes - layout and validation ( default values in db )
-back buttons and navigation (Done)
-.pyc files in gitignore - Done
+sort checkboxes - layout and validation
+navigation (done)
 
 classes
 - classes name
-- refactor templates ( clean up )
 - check join table query - merge two tables ?
 - check session class_code variable ( how to pass around ?)
 
@@ -19,6 +17,9 @@ submissions
 - view submission after upload ( name )
 - delete files...
 
+IMPORTANT
+- delete classes and assignments
+- back buttons
 
 from passlib.apps import custom_app_context as pwd_context
 pwd_context.encrypt("1234")
