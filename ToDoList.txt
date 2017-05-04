@@ -3,21 +3,26 @@ Authentication
 - forgot password
 
 find background
-sort checkboxes - layout and validation
+sort checkboxes - layout and validation (default)
 
 classes
-- classes name and assignment name
 - check join table query - merge two tables ?
 - check session class_code variable ( how to pass around ?)
 
+IMPORTANT
+
 submissions
 - view submission after upload ( name )
-- delete files...
+- delete files... (delete on leaving...)
+- assignment name - in submission (for teacher)
+- delete assignments - in submission (for teacher)
 
-IMPORTANT
-- delete classes and assignments
+- delete classes - Done
+- leave classes - Done
 - back buttons
+- classes name - Done
 - cleanup, comments
+- edit details - student teacher
 
 from passlib.apps import custom_app_context as pwd_context
 pwd_context.encrypt("1234")

@@ -22,7 +22,8 @@ def assign():
         # Get role of the user for the selected class
         role = getUser_ClassroomByCodeAndID(session["user_id"], session["class_code"]).role
         assignments = getAssignmentByClassCode(session["class_code"])
-        return render_template("assignments/inside_class.html",class_code=session["class_code"], role=role, assignments=assignments)
+        class_name = getClassroomByCode(session["class_code"]).class_name
+        return render_template("assignments/inside_class.html",class_code=session["class_code"],class_name=class_name,role=role, assignments=assignments)
 
 @assignment_mod.route("/createassign", methods=["GET", "POST"])
 @login_required

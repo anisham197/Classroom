@@ -87,3 +87,25 @@ def createclass():
         db.session.commit()
 
         return redirect(url_for("classroom.index"))
+
+@classroom_mod.route("/leaveclass", methods=["GET", "POST"])
+@login_required
+def leaveclass():
+    user_classroom = getUser_ClassroomByCodeAndID(session['user_id'], session['class_code'])
+    db.session.delete(user_classroom)
+    db.session.commit()
+    return redirect(url_for("classroom.index"))
+
+@classroom_mod.route("/deleteclass", methods=["GET", "POST"])
+@login_required
+def deleteclass():
+    role = getUser_ClassroomByCodeAndID(session["user_id"], session["class_code"]).role
+    # Only creators can delete class
+    if  role != CREATOR :
+        return redirect(url_for("classroom.index"))
+
+    else :
+        classroom = getClassroomByCode(session['class_code'])
+        db.session.delete(classroom)
+        db.session.commit()
+        return redirect(url_for("classroom.index"))

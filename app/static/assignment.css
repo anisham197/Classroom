@@ -35,7 +35,7 @@
 }
 
 .class_grid {
-		margin-top: 100px;
+		margin-top: 0%;
 }
 
 
@@ -145,4 +145,13 @@
     background-image: -ms-linear-gradient(top,#009688,#00897B);
     background-image: -o-linear-gradient(top,#009688,#00897B);
     background-image: linear-gradient(top,#009688,#00897B);
+}
+
+#class_title {
+    padding-top: 5%;
+    padding-bottom: 4%;
+    text-align: center;
+    height: 15px;
+    color: #009688;
+    font-weight: bolder;
 }
