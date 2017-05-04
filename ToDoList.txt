@@ -1,15 +1,12 @@
 Authentication
 - form validation : usn, email, password strength
 - forgot password
-- flash message colour
-- Add branches
 
 find background
 sort checkboxes - layout and validation
-navigation (done)
 
 classes
-- classes name
+- classes name and assignment name
 - check join table query - merge two tables ?
 - check session class_code variable ( how to pass around ?)
 
@@ -20,6 +17,7 @@ submissions
 IMPORTANT
 - delete classes and assignments
 - back buttons
+- cleanup, comments
 
 from passlib.apps import custom_app_context as pwd_context
 pwd_context.encrypt("1234")
