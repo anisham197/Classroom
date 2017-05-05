@@ -1,19 +1,19 @@
 /*View Submissions - Teacher*/
 a:link {
   /*text-decoration: none;*/
-  color : #0000FF;
+  color : #009688;
 }
 
 a:hover {
-  /*color : #000000;*/
+  color : #009688;
 }
 
 a:visited {
-  color : #000000;
+  color : #009688;
 }
 
 a:active {
-
+  color : #009688;
 }
 
 #page_body {
@@ -21,26 +21,40 @@ a:active {
   width: 100%;
 }
 
+#assignment_title {
+  padding-top: 5%;
+  padding-bottom: 4%;
+  text-align: center;
+  height: 15px;
+  color: #009688;
+  font-weight: bolder;
+}
 #submission_table {
-  top: 150px;
+  top: 30px;
   left: 3%;
   width: 90%;
-  /*table-layout: fixed;*/
+  table-layout: fixed;
   overflow: hidden;
   text-overflow: ellipsis;
-  text-align: left;
-  /*font-size: 22px;*/
+   /*font-size: 22px;*/
 }
+
+#submission_table > tbody > tr > td {
+    text-align: center;
+}
+
+#submission_table > thead > tr > th {
+    text-align: center;
+    font-size: 14px;
+    color: #000000;
+}
+
 #aa {
   font-size: 22px;
 }
 .table_header {
   font-size: 22px;
-}
- tr, thead{
-  font-size: 14px;
-  text-align: center;
-}
+
 /*@media only screen and (max-width: 480px) {
     table,
     thead,

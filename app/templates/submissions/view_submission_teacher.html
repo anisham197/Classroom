@@ -8,47 +8,11 @@
 
 {% block body %}
 {% include "submission_nav_drawer.html" %}
-<div id="page_body">
-<div>
-  <table id="submission_table" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-      <thead>
-          <tr>
-            <th  class="mdl-data-table__cell--non-numeric table_header">S No.</th>
-              <th>USN</th>
-              <th>Name</th>
-              <th>File</th>
-              <th>Time</th>
-              <th>Grade</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr>
-            <td data-label="S No." class="mdl-data-table__cell--non-numeric">111</td>
-           <td data-label="USN">1MS14IS004</td>
-           <td data-label="Name">AMISHA AGRWAL</td>
-           <td data-label="File"><a href="">JAVA.pdf</a></td>
-           <td data-label="Time">12/04/2017</td>
-           <td data-label="Grade">Ungraded</td>
-          </tr>
-          <tr>
-            <td data-label="S No." class="mdl-data-table__cell--non-numeric">112</td>
-           <td data-label="USN">1MS14IS098</td>
-           <td data-label="Name">Padhavi Gowda</td>
-           <td data-label="File"><a href="">Python.ppt</a></td>
-           <td data-label="Time">22/04/2017</td>
-           <td data-label="Grade">15/20</td>
-          </tr>
-          <tr>
-            <td data-label="S No." class="mdl-data-table__cell--non-numeric">113</td>
-             <td data-label="USN">1MS14IS099</td>
-             <td data-label="Name">Utkarsha</td>
-             <td data-label="File"><a href="">Bioinformaics</a></td>
-             <td data-label="Time">11/02/2019</td>
-             <td data-label="Grade">20/20</td>
-          </tr>
-      </tbody>
-  </table>
-</div>
-</div>
-
+<div id="assignment_title"><h4>Constructor</h4> </div>
+  <main id="page_body">
+    {% include "submission_table_header.html" %}
+    {% for submission in submissions%}
+      {% include "submission_table.html" %}
+    {% endfor %}
+  </main>
 {% endblock %}

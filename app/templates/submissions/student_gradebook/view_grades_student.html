@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block head %}
+<link href="{{ url_for('static', filename='submission.css') }}" rel="stylesheet" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.teal-amber.min.css">
+{% endblock %}
+{% block title %} View Grades {% endblock %}
+
+{% block body %}
+{% include "./assignments/assign_nav_drawer.html" %}
+<div id="assignment_title"><h4>Class Name - Grades</h4> </div>
+  <main id="page_body">
+      <table id="submission_table" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+          <thead>
+              <tr>
+                  <th>S No.</th>
+                  <th>Assignment Name</th>
+                  <th>File Name</th>
+                  <th>Grade</th>
+                  <th>Submitted </th>
+              </tr>
+          </thead>
+          <tbody>
+              {% set n = 0%}
+              {% for submission in submissions%}
+                {% set n = n + 1%}
+                <tr>
+                  <td data-label="S No.">{{n}}</td>
+                  <td data-label="File">{{assign_names[submission.assignment_id]}}</td>
+                  <td data-label="File"><a href="{{url_for('submission.uploaded_file', assign_id=submission.assignment_id, filename=submission.filename)}}">{{submission.filename}}</a></td>
+                  <td data-label="Grade">{{submission.grade}}</td>
+                  <td data-label="Grade">{{submission.timestamp}}</td>
+                </tr>
+              {% endfor %}
+        </tbody>
+  </main>
+{% endblock %}
