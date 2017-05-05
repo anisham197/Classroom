@@ -5,10 +5,12 @@
         <nav class="mdl-navigation">
             <a class="mdl-navigation__link" href="{{url_for('assignment.assign', class_code=class_code)}}">Assignments</a>
             <a class="mdl-navigation__link" href="">Notes</a>
-            <a class="mdl-navigation__link" href="">Submissions</a>
             {% if role is equalto 0%}
+            <a class="mdl-navigation__link" href="">Gradebook</a>
+            <a class="mdl-navigation__link" href="">Students</a>
             <a class="mdl-navigation__link" href="{{url_for('classroom.deleteclass')}}">Delete Classroom</a>
             {% elif role is equalto 1%}
+            <a class="mdl-navigation__link" href="{{url_for('submission.student_gradebook')}}">Gradebook</a>
             <a class="mdl-navigation__link" href="{{url_for('classroom.leaveclass')}}">Leave Classroom</a>
             {% endif %}
         </nav>

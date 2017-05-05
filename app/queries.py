@@ -48,5 +48,23 @@ def x(session, user_id, assignment_id):
     submissions = session.query(Submission).join(User, User.id == Submission.user_id).filter(Submission.assignment_id == assignment_id).all()
     # details = session.query(Submission).join(User, User.id == Submission.user_id).filter(Submission.assignment_id == assignment_id).all()
 
-def getSubmissionsForAssign(user_id, assignment_id):
-    return Submission.query.filter(Submission.assignment_id == assignment_id).all()
+def getSubmissionsForAssign(assignment_id):
+    submissions = Submission.query.filter(Submission.assignment_id == assignment_id).all()
+    for submission in submissions :
+        user_id = submission.user_id
+        role = getUserByUserID(user_id).role
+        user_object = getNamebyIDandRole(user_id, role)
+        submission.user_name = user_object.name
+        submission.uid = user_object.tid if role == 0 else user_object.usn
+    return submissions
+
+
+def getSubmissionsByUserIDandClassCode(user_id, class_code):
+    submissions = Submission.query.filter(Submission.user_id == user_id).filter(Submission.class_code == class_code).all()
+    assignment = Assignment.query.filter(Assignment.class_code == class_code).all()
+
+    assignment_names = {}
+    for a in assignment:
+        assignment_names[a.assignment_id] = a.title
+
+    return submissions, assignment_names
