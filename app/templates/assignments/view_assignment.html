@@ -25,6 +25,7 @@
           <div id="view_assign">
              <h2>{{assignment.title}} </h2>
 
+             {% if role is equalto 1 %}
              <p id="link"> File Submitted:
                  {% if submission %}
                  <a style="color:#009688"
@@ -34,7 +35,7 @@
                   None
                  {% endif %}
              </p>
-
+             {% endif %}
 
                <h4>Description</h4>
                <div  class="assign_text">

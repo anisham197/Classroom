@@ -8,7 +8,7 @@
 
 {% block body %}
 {% include "./assignments/assign_nav_drawer.html" %}
-<div id="assignment_title"><h4>{{class_name}} - Grades</h4> </div>
+<div id="assignment_title"><h3>{{class_name}} - Grades</h3> </div>
   <main id="page_body">
       <table id="submission_table" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
           <thead>
@@ -17,19 +17,19 @@
                   <th>Assignment Name</th>
                   <th>File Name</th>
                   <th>Grade</th>
-                  <th>Submitted </th>
+                  <th>Maximum Score</th>
+                  <th>Submitted On</th>
               </tr>
           </thead>
           <tbody>
-              {% set n = 0%}
               {% for submission in submissions%}
-                {% set n = n + 1%}
                 <tr>
-                  <td data-label="S No.">{{n}}</td>
-                  <td data-label="File">{{assign_names[submission.assignment_id]}}</td>
-                  <td data-label="File"><a href="{{url_for('submission.uploaded_file', assign_id=submission.assignment_id, filename=submission.filename)}}">{{submission.filename}}</a></td>
-                  <td data-label="Grade">{{submission.grade}}</td>
-                  <td data-label="Grade">{{submission.timestamp}}</td>
+                  <td>{{loop.index}}</td>
+                  <td>{{assign_names[submission.assignment_id][0]}}</td>
+                  <td ><a href="{{url_for('submission.uploaded_file', assign_id=submission.assignment_id, filename=submission.filename)}}">{{submission.filename}}</a></td>
+                  <td >{{submission.grade}}</td>
+                  <td>{{assign_names[submission.assignment_id][1]}}</td>
+                  <td>{{submission.timestamp}}</td>
                 </tr>
               {% endfor %}
         </tbody>

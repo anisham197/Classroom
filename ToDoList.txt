@@ -12,8 +12,7 @@ classes
 IMPORTANT
 
 submissions
-- submissions for single assignment ( to grade ) - Amisha
-- Grading
+- Grading the single assignment - Amisha
 - submissions for teachers across all students and all assignments
 
 - delete assignments - in submission (for teacher)

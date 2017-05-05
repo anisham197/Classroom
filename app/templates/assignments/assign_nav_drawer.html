@@ -3,7 +3,7 @@
     <div class="mdl-layout__drawer">
         <span class="mdl-layout-title">Classroom</span>
         <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="{{url_for('assignment.assign', class_code=class_code)}}">Assignments</a>
+            <a class="mdl-navigation__link" href="{{url_for('assignment.assign', class_code=session['class_code'])}}">Assignments</a>
             <a class="mdl-navigation__link" href="">Notes</a>
             {% if role is equalto 0%}
             <a class="mdl-navigation__link" href="">Gradebook</a>

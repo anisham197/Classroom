@@ -8,11 +8,33 @@
 
 {% block body %}
 {% include "submission_nav_drawer.html" %}
-<div id="assignment_title"><h4>Constructor</h4> </div>
+<div id="assignment_title"><h3>{{assignment.title}} - Submissions</h3> </div>
+<div><p id="assignment_score">Maximum Score - {{assignment.max_score}}</p> </div>
   <main id="page_body">
-    {% include "submission_table_header.html" %}
-    {% for submission in submissions%}
-      {% include "submission_table.html" %}
-    {% endfor %}
+    <table id="submission_table" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <thead>
+            <tr>
+                <th>S No.</th>
+                <th>UID</th>
+                <th>Name</th>
+                <th>File</th>
+                <th>Time</th>
+                <th>Grade</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for submission in submissions%}
+          <tr>
+                <td data-label="S No.">{{loop.index}}</td>
+                <td data-label="UID">{{submission.uid}}</td>
+                 <td data-label="Name">{{submission.user_name}}</td>
+                 <td data-label="File"><a href="{{url_for('submission.view_file',filepath=submission.filepath, filename=submission.filename)}}">{{submission.filename}}</a></td>
+                 <td data-label="Time">{{submission.timestamp}}</td>
+                 <td data-label="Grade">{{submission.grade}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
   </main>
 {% endblock %}
