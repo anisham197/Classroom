@@ -96,4 +96,5 @@ def view_submissions():
 def student_gradebook():
     if request.method == "GET" :
         submissions, assignment_names = getSubmissionsByUserIDandClassCode(session["user_id"], session["class_code"])
-        return render_template("submissions/student_gradebook/view_grades_student.html", submissions = submissions, assign_names=assignment_names)
+        class_name = getClassroomByCode(session["class_code"]).class_name
+        return render_template("submissions/student_gradebook/view_grades_student.html", submissions=submissions, assign_names=assignment_names, class_name=class_name)
