@@ -33,22 +33,25 @@ a:active {
   top: 30px;
   left: 3%;
   width: 90%;
-  /*table-layout: fixed;*/
+  table-layout: fixed;;
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: left;
   /*font-size: 22px;*/
 }
-#aa {
-  font-size: 22px;
-}
-.table_header {
-  font-size: 22px;
-}
- tr, thead{
-  font-size: 14px;
+
+#submission_table > tbody > tr > td {
   text-align: center;
+  font-size: 13px;
 }
+
+#submission_table > thead > tr > th {
+  text-align: center;
+  font-size: 14px;
+  color: #000;
+}
+
+
 /*@media only screen and (max-width: 480px) {
     table,
     thead,
