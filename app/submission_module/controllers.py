@@ -83,4 +83,9 @@ def uploaded_file(filename):
 @submission_mod.route('/view_submissions', methods=["GET","POST"])
 def view_submissions():
     if request.method == "GET" :
-        return render_template("submissions/view_submission_teacher.html")
+        session["assignment_id"] = request.args.get('id')
+        # validate role
+        submissions = getSubmissionsForAssign(session["user_id"], session["assignment_id"])
+        for submission in submissions :
+            print ("\n\n\n111\n\n")
+        return render_template("submissions/view_submission_teacher.html", submissions = submissions)

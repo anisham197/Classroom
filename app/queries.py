@@ -43,3 +43,6 @@ def getAssignmentByID(id):
 
 def getSubmissionByUserIDandAssignID(user_id, assignment_id):
     return Submission.query.filter(Submission.user_id == user_id).filter(Submission.assignment_id == assignment_id).first()
+
+def getSubmissionsForAssign(user_id, assignment_id):
+    return Submission.query.filter(Submission.assignment_id == assignment_id).all()
