@@ -11,7 +11,7 @@
         {% if role is equalto 0 %}
         <a href="{{url_for('assignment.editassign', id=assignment.assignment_id)}}" class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">
           Edit  </a>
-        <a href="{{url_for('assignment.viewtable')}}" class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">
+        <a href="{{url_for('submission.view_submissions')}}" class="mdl-button mdl-button--accent mdl-js-button mdl-js-ripple-effect">
           View  </a>
 
          {% elif role is equalto 1 %}

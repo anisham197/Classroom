@@ -108,9 +108,9 @@ def editassign():
         db.session.commit()
         return redirect(url_for("assignment.assign", class_code=session["class_code"]))
 
-
-@assignment_mod.route("/viewtable", methods=["GET", "POST"])
-@login_required
-def viewtable():
-    if request.method == "GET" :
-            return render_template("assignments/view_assignment_teacher.html")
+# 
+# @assignment_mod.route("/viewtable", methods=["GET", "POST"])
+# @login_required
+# def viewtable():
+#     if request.method == "GET" :
+#             return render_template("assignments/view_assignment_teacher.html")

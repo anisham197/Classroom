@@ -78,3 +78,9 @@ def uploaded_file(filename):
     assign_id = request.args.get('assign_id')
     submission = getSubmissionByUserIDandAssignID(session['user_id'], assign_id)
     return send_from_directory(os.path.abspath(submission.filepath), submission.filename)
+
+
+@submission_mod.route('/view_submissions', methods=["GET","POST"])
+def view_submissions():
+    if request.method == "GET" :
+        return render_template("submissions/view_submission_teacher.html")
