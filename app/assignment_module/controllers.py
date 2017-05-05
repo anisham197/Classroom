@@ -47,6 +47,8 @@ def createassign():
         if request.form.get('zip_file') == None :
             zip_file = 0
 
+        if doc_file == 0 and pdf_file == 0 and ppt_file == 0 and zip_file == 0:
+            doc_file = pdf_file = ppt_file = zip_file = 1
         new_assignment = Assignment(session["class_code"], request.form["title"], request.form["last_date"] , request.form["max_score"], request.form["description"], doc_file, pdf_file, ppt_file, zip_file)
         db.session.add(new_assignment)
         db.session.commit()
