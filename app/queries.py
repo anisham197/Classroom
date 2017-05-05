@@ -69,3 +69,16 @@ def getSubmissionsByUserIDandClassCode(user_id, class_code):
         assignment_names[a.assignment_id] = [a.title, a.max_score]
 
     return submissions, assignment_names
+
+def getStudentDetails(class_code):
+    users = User_Classroom.query.filter(User_Classroom.class_code == class_code).filter(User_Classroom.role == 1)
+    studentsList = []
+    for user in users:
+        role = getUserByUserID(user.user_id).role
+        if( role == 1):
+            student = Student.query.filter(Student.user_id == user.user_id).first()
+            studentsList.append([user.user_id, student.name, student.usn, student.email])
+        if( role == 0):
+            student = Teacher.query.filter(Teacher.user_id == user.user_id).first()
+            studentsList.append([user.user_id, student.name, student.tid, student.email])
+    return studentsList

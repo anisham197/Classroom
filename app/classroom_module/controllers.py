@@ -109,3 +109,23 @@ def deleteclass():
         db.session.delete(classroom)
         db.session.commit()
         return redirect(url_for("classroom.index"))
+
+@classroom_mod.route("/students", methods=["GET", "POST"])
+@login_required
+def students():
+    role = getUser_ClassroomByCodeAndID(session["user_id"], session["class_code"]).role
+    if  role != CREATOR :
+        return render_template("auth/no_access.html", msg="You do not have access to this page !")
+
+    if request.method == "GET" :
+        students = getStudentDetails(session["class_code"])
+        classroom = getClassroomByCode(session["class_code"])
+        return render_template("assignments/students.html", students=students, role=0, classroom=classroom)
+
+    if request.method == "POST" :
+        user_id = request.args.get('user_id')
+        class_code = request.args.get('class_code')
+        user_classroom = getUser_ClassroomByCodeAndID(user_id, class_code)
+        db.session.delete(user_classroom)
+        db.session.commit()
+        return redirect(url_for('classroom.students'))

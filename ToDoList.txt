@@ -14,8 +14,6 @@ IMPORTANT
 submissions
 - submissions for teachers across all students and all assignments
 - remove students
-- no file upload, wrong extension
-
 
 - teacher name in class (easy, in card not easy )
 - edit details - student teacher

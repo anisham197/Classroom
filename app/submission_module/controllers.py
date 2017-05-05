@@ -72,6 +72,8 @@ def upload():
 
             # return redirect(url_for('submission.uploaded_file', filename=filename, assign_id=id))
             return redirect(url_for('assignment.viewassign', id=session["assignment_id"]))
+        else:
+            return render_template("auth/no_access.html", msg="File extension not allowed, Please upload one of these formats: " + str(extensions))
 
 @submission_mod.route('/uploads/<filename>')
 def uploaded_file(filename):
