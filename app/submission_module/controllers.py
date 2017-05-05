@@ -15,7 +15,7 @@ submission_mod = Blueprint('submission', __name__, url_prefix='/submissions' , s
 
 # For a given file, return whether it's an allowed type or not
 def allowed_file(filename, extensions):
-    return '.' in filename and filename.rsplit('.', 1)[1] in extensions
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in extensions
 
 def getExtensions(assignment):
     extensions = []
@@ -78,3 +78,9 @@ def uploaded_file(filename):
     assign_id = request.args.get('assign_id')
     submission = getSubmissionByUserIDandAssignID(session['user_id'], assign_id)
     return send_from_directory(os.path.abspath(submission.filepath), submission.filename)
+
+
+@submission_mod.route('/view_submissions', methods=["GET","POST"])
+def view_submissions():
+    if request.method == "GET" :
+        return render_template("submissions/view_submission_teacher.html")

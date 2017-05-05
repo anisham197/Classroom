@@ -1,0 +1,82 @@
+/*View Submissions - Teacher*/
+a:link {
+  /*text-decoration: none;*/
+  color : #0000FF;
+}
+
+a:hover {
+  /*color : #000000;*/
+}
+
+a:visited {
+  color : #000000;
+}
+
+a:active {
+
+}
+
+#page_body {
+  height: 100%;
+  width: 100%;
+}
+
+#submission_table {
+  top: 150px;
+  left: 3%;
+  width: 90%;
+  /*table-layout: fixed;*/
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  /*font-size: 22px;*/
+}
+#aa {
+  font-size: 22px;
+}
+.table_header {
+  font-size: 22px;
+}
+ tr, thead{
+  font-size: 14px;
+  text-align: center;
+}
+/*@media only screen and (max-width: 480px) {
+    table,
+    thead,
+    tbody,
+    td,
+    tr {
+        display: block;
+    }
+    thead {
+        display: none;
+    }
+    .mdl-data-table tbody tr {
+        height: auto;
+    }
+    .mdl-data-table tbody tr:nth-child(even) {
+        background-color: #eee;
+    }
+    .mdl-data-table td,
+    .mdl-data-table td:first-of-type {
+        padding-left: 50%;
+    }
+    .mdl-data-table td:before {
+        position: fixed;
+        top: 6px;
+        left: 6px;
+        width: 95%;
+        padding: 6px 18px 0;
+        white-space: nowrap;
+        content: attr(data-label);
+        text-align: left;
+        color: rgba(0, 0, 0, 0.541176);
+        font-weight: bold;
+        font-family: Helvetica, Arial, sans-serif;
+        font-size: 16px;
+    }
+    .mdl-data-table td:last-of-type {
+        padding-right: 18px;
+    }
+}*/
