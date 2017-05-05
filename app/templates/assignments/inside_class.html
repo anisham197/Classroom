@@ -8,8 +8,11 @@
 
 {% block body %}
 {% include "assign_nav_drawer.html" %}
-
+<div id="class_title">
+<h3>{{class_name}}</h3>
+</div>
 <main id="main-content" class="mdl-layout__content">
+
 {% if assignments %}
     {% include "all_assignments.html" %}
 

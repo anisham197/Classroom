@@ -1,0 +1,21 @@
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    {% include "header.html" %}
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Classroom</span>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="{{url_for('classroom.index')}}">Classes</a>
+            {% if role is equalto 0 %}
+            <a class="mdl-navigation__link" href="{{url_for('classroom.joined_classes')}}">Joined Classes</a>
+            {% endif %}
+            <a class="mdl-navigation__link" href="#">Calendar</a>
+            <a class="mdl-navigation__link" href="#">Work</a>
+
+            {% if role is equalto 0 %}
+            <a class="mdl-navigation__link" href="{{url_for('auth.edit_teacher')}}">Edit Details</a>
+            {% elif role is equalto 1 %}
+            <a class="mdl-navigation__link" href="{{url_for('auth.edit_student')}}">Edit Details</a>
+            {% endif %}
+
+        </nav>
+    </div>
+</div>

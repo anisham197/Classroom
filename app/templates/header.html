@@ -6,7 +6,10 @@
             <header class="mdl-layout__header">
                 <div class="mdl-layout__header-row search_bar">
                     <!-- Title -->
-                    <span class="mdl-layout-title">Classroom</span>
+                    <a id="home" href="{{url_for('classroom.index')}}">
+                        <span class="mdl-layout-title">Classroom</span>
+                    </a>
+
                     <!-- Add spacer, to align navigation to the right -->
                     <div class="mdl-layout-spacer"></div>
 
@@ -32,5 +35,6 @@
                         <a class="mdl-navigation__link" href="">Link</a>
                         <a class="mdl-navigation__link" href="">Link</a>
                     </nav>-->
+                    {% include "./auth/logout.html" %}
                 </div>
             </header>
