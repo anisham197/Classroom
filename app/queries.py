@@ -1,8 +1,14 @@
 # Import module models (i.e. User)
-from app.auth_module.models import User, Student
+from app.auth_module.models import User, Student, Teacher
 from app.classroom_module.models import Classroom, User_Classroom
 from app.assignment_module.models import Assignment
 from app.submission_module.models import Submission
+
+def getNamebyIDandRole(user_id, role) :
+    if( role == 1):
+        return Student.query.filter(Student.user_id == user_id).first()
+    if( role == 0):
+        return Teacher.query.filter(Teacher.user_id == user_id).first()
 
 def getUserByUsername(username) :
     return User.query.filter(User.username == username).first()

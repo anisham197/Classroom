@@ -31,16 +31,16 @@ def login():
         user = getUserByUsername(request.form.get("username") )
         # ensure username exists and password is correct
         if user == None or not pwd_context.verify(request.form.get("password"), user.password):
-            flash("Invalid Username/Password !", 'error')
+            flash('Invalid Username/Password !', 'error')
             return render_template("auth/login.html")
 
         # remember which user has logged in
         session["user_id"] = user.id
 
+        session["name"] = getNamebyIDandRole(user.id, user.role).name
+
         # redirect user to home page
-        flash("You are logged in !", 'info')
         return redirect(url_for('classroom.index'))
-        # return render_template("classes/classroom.html")
 
 @auth_mod.route("/signup", methods=["GET", "POST"])
 def signup():
@@ -84,5 +84,19 @@ def signup():
         db.session.add(student)
         db.session.commit()
 
-        flash("You have successfully Signed Up !", 'info')
+        flash("Successfully Signed Up ! Login to Proceed", 'success')
         return render_template("auth/login.html")
+
+@auth_mod.route("/logout", methods=["GET"])
+def logout():
+    # forget any user_id
+    session.clear()
+    return redirect(url_for('auth.login'))
+
+@auth_mod.route("/edit_teacher", methods=["GET"])
+def edit_teacher():
+    return redirect(url_for('classroom.index'))
+
+@auth_mod.route("/edit_student", methods=["GET"])
+def edit_student():
+    return redirect(url_for('classroom.index'))

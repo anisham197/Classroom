@@ -25,15 +25,10 @@ def index():
         role = getUserByUserID(session["user_id"]).role
         joined_classes = getJoinedClassroom(session["user_id"], db.session)
         created_classes = getCreatedClassroom(session["user_id"], db.session)
-            # x =[]
-            # for (class1 ,user_class) in joined_classes :
-            #     x.append(class1)
-            #     print ("\n\nyayyaya\n" + str(user_class.user_id) + "\n\n " + class1.subject)
         if role == 1 :
-            return render_template("classes/student_class.html", role=  role, classes=joined_classes)
+            return render_template("classes/main_class.html", role=role, classes=joined_classes)
         else :
-            return render_template("classes/teacher_class.html", role=  role, classes=created_classes)
-        # return render_template("classes/main_class.html", role=role, joined_classes=joined_classes, created_classes=created_classes)
+            return render_template("classes/main_class.html", role=role, classes=created_classes)
 
     if request.method == "POST" :
         # Check whether the entered class code is valid
@@ -47,7 +42,6 @@ def index():
                 return render_template("auth/no_access.html", msg="Already part of this class")
             else :
                 return render_template("auth/no_access.html", msg="You are creator of this class")
-
 
         # Add the student to the classroom
         user_class = User_Classroom( session["user_id"], request.form["class_code"], STUDENT)
@@ -63,8 +57,7 @@ def joined_classes():
         role = getUserByUserID(session["user_id"]).role
         joined_classes = getJoinedClassroom(session["user_id"], db.session)
         if role == 0 :
-            return render_template("classes/teacher_class.html", role=  role, classes=joined_classes)
-        # return render_template("classes/main_class.html", role=role, joined_classes=joined_classes, created_classes=created_classes)
+            return render_template("classes/main_class.html", role=  role, classes=joined_classes)
 
 @classroom_mod.route("/createclass", methods=["GET", "POST"])
 @login_required
@@ -93,4 +86,26 @@ def createclass():
         db.session.add(user_class)
         db.session.commit()
 
+        return redirect(url_for("classroom.index"))
+
+@classroom_mod.route("/leaveclass", methods=["GET", "POST"])
+@login_required
+def leaveclass():
+    user_classroom = getUser_ClassroomByCodeAndID(session['user_id'], session['class_code'])
+    db.session.delete(user_classroom)
+    db.session.commit()
+    return redirect(url_for("classroom.index"))
+
+@classroom_mod.route("/deleteclass", methods=["GET", "POST"])
+@login_required
+def deleteclass():
+    role = getUser_ClassroomByCodeAndID(session["user_id"], session["class_code"]).role
+    # Only creators can delete class
+    if  role != CREATOR :
+        return redirect(url_for("classroom.index"))
+
+    else :
+        classroom = getClassroomByCode(session['class_code'])
+        db.session.delete(classroom)
+        db.session.commit()
         return redirect(url_for("classroom.index"))

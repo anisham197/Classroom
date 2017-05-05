@@ -22,7 +22,8 @@ def assign():
         # Get role of the user for the selected class
         role = getUser_ClassroomByCodeAndID(session["user_id"], session["class_code"]).role
         assignments = getAssignmentByClassCode(session["class_code"])
-        return render_template("assignments/inside_class.html", role=role, assignments=assignments)
+        class_name = getClassroomByCode(session["class_code"]).class_name
+        return render_template("assignments/inside_class.html",class_code=session["class_code"],class_name=class_name,role=role, assignments=assignments)
 
 @assignment_mod.route("/createassign", methods=["GET", "POST"])
 @login_required
@@ -32,17 +33,8 @@ def createassign():
     if role == STUDENT :
         return render_template("auth/no_access.html", msg="You do not have access to this page !")
 
-    # class_code = request.args.get('class_code')
-    #global class_code
-    # TODO : check if it is necessary to validate class code
-
-    # if class_code == None :
-    #     return render_template("auth/no_access.html", msg="ERROR!! Class code is null!")
-
-    # print("\n\n class_code create assign " + str(session["class_code"]) + "\n\n")
-
     if request.method == "GET" :
-        return render_template("assignments/create_assignment.html")
+        return render_template("assignments/create_assignment.html", class_code=session["class_code"])
 
     if request.method == "POST" :
         doc_file = pdf_file = ppt_file = zip_file = 1
@@ -55,6 +47,8 @@ def createassign():
         if request.form.get('zip_file') == None :
             zip_file = 0
 
+        if doc_file == 0 and pdf_file == 0 and ppt_file == 0 and zip_file == 0:
+            doc_file = pdf_file = ppt_file = zip_file = 1
         new_assignment = Assignment(session["class_code"], request.form["title"], request.form["last_date"] , request.form["max_score"], request.form["description"], doc_file, pdf_file, ppt_file, zip_file)
         db.session.add(new_assignment)
         db.session.commit()
@@ -69,20 +63,21 @@ def viewassign():
         role = getUser_ClassroomByCodeAndID(session["user_id"], session["class_code"]).role
         assignment = getAssignmentByID(session["assignment_id"])
 
-        return render_template("assignments/view_assignment.html", role = role, assignment = assignment)
-
-        #if request.method == "POST":
-        #Upload files ?
+        return render_template("assignments/view_assignment.html", class_code=session["class_code"], role = role, assignment = assignment)
 
 @assignment_mod.route("/editassign", methods=["GET", "POST"])
 @login_required
 def editassign():
+    role = getUser_ClassroomByCodeAndID(session["user_id"], session["class_code"]).role
+    if role == STUDENT :
+        return render_template("auth/no_access.html", msg="You do not have access to this page !")
+
     if request.method == "GET" :
         session["assignment_id"] = request.args.get('id')
         # get role and assignment details
         role = getUser_ClassroomByCodeAndID(session["user_id"], session["class_code"]).role
         assignment = getAssignmentByID(session["assignment_id"])
-        return render_template("assignments/edit_assignment.html", role = role, assignment = assignment)
+        return render_template("assignments/edit_assignment.html", class_code=session["class_code"], role = role, assignment = assignment)
 
     if request.method == "POST" :
         doc_file = pdf_file = ppt_file = zip_file = 1

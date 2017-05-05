@@ -27,9 +27,15 @@
 
         <img src = "{{ url_for('static', filename='resources/images/android-icon-96x96.png') }}" >
         <br>
-        {% with message = get_flashed_messages() %}
-            {% if message %}
-              <span style="color:red"> {{message[0]}} </span>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    {% if category is equalto 'success' %}
+                    <span style="color:#009688"> {{message}} </span>
+                    {% else %}
+                    <span style="color:red"> {{message}} </span>
+                    {% endif %}
+                {% endfor %}
             {% endif %}
         {% endwith %}
         <br>

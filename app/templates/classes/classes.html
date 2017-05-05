@@ -4,26 +4,7 @@
             <div>
               {% for class in classes %}
                 {% include "class_card.html" %}
-                <!-- {% for class in x %} -->
-                <!-- {% endfor %} -->
               {% endfor %}
-
-              <!-- old part -->
-              {# if role is equalto 0 %}
-                   {% for class in created_classes %}
-                      {% with role="Creator" %}
-                        {% include "class_card.html" %}
-                      {% endwith %}
-                   {% endfor %}
-
-              {% else %}
-              {% for class in joined_classes %}
-                {% include "class_card.html" %}
-                <!-- {% for class in x %} -->
-                <!-- {% endfor %} -->
-              {% endfor %}
-              {% endif #}
-
             </div>
 
         </div>

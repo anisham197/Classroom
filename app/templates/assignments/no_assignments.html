@@ -3,6 +3,9 @@
             <h2 class="mdl-card__title-text">Welcome</h2>
         </div>
         <div class="mdl-card__supporting-text">
-        <a>You do not have any assignments yet. Click on the button below to add an assignment.</a>
+        You do not have any assignments yet.
+        {% if role is equalto 0 %}
+             Click on the button below to add an assignment.
+        {% endif %}
         </div>
 </div>
