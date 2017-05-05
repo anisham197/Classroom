@@ -9,6 +9,7 @@ from app.queries import *
 # Define the blueprint
 assignment_mod = Blueprint('assignment', __name__, url_prefix='/assignments' , static_folder = '../static', template_folder = '../templates/assignments')
 
+CREATOR = 0
 STUDENT = 1
 class_code = None
 
@@ -100,5 +101,19 @@ def editassign():
         assignment.pdf_file = pdf_file
         assignment.ppt_file = ppt_file
         assignment.zip_file = zip_file
+        db.session.commit()
+        return redirect(url_for("assignment.assign", class_code=session["class_code"]))
+
+@assignment_mod.route("/deleteassign", methods=["GET", "POST"])
+@login_required
+def deleteassign():
+    role = getUser_ClassroomByCodeAndID(session["user_id"], session["class_code"]).role
+    if  role != CREATOR :
+        return render_template("auth/no_access.html", msg="You do not have access to this page !")
+
+    else :
+        session["assignment_id"] = request.args.get('id')
+        assignment = getAssignmentByID(session["assignment_id"])
+        db.session.delete(assignment)
         db.session.commit()
         return redirect(url_for("assignment.assign", class_code=session["class_code"]))

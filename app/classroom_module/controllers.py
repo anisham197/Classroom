@@ -102,7 +102,7 @@ def deleteclass():
     role = getUser_ClassroomByCodeAndID(session["user_id"], session["class_code"]).role
     # Only creators can delete class
     if  role != CREATOR :
-        return redirect(url_for("classroom.index"))
+        return render_template("auth/no_access.html", msg="You do not have access to this page !")
 
     else :
         classroom = getClassroomByCode(session['class_code'])

@@ -3,10 +3,10 @@
     <div class="mdl-layout__drawer">
         <span class="mdl-layout-title">Title</span>
         <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="{{url_for('submission.view_submissions', id=submissions[0].assignment_id)}}">View Submissions</a>
-            <a class="mdl-navigation__link" href="{{url_for('submission.view_submissions', id=submissions[0].assignment_id)}}">Grade Submissions</a>
-            <a class="mdl-navigation__link" href="{{url_for('assignment.viewassign', id=submissions[0].assignment_id)}}">View Assignment Details</a>
-            <a class="mdl-navigation__link" href="#">Delete Assignment</a>
+            <a class="mdl-navigation__link" href="{{url_for('submission.view_submissions', id=assignment.assignment_id)}}">View Submissions</a>
+            <a class="mdl-navigation__link" href="{{url_for('submission.grade_submissions', id=assignment.assignment_id)}}">Grade Submissions</a>
+            <a class="mdl-navigation__link" href="{{url_for('assignment.viewassign', id=assignment.assignment_id)}}">View Assignment Details</a>
+            <a class="mdl-navigation__link" href="{{url_for('assignment.deleteassign', id=assignment.assignment_id)}}">Delete Assignment</a>
             <a class="mdl-navigation__link" href="{{url_for('assignment.assign', class_code=session['class_code'])}}">Back to Assignments</a>
         </nav>
     </div>

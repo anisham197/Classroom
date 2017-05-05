@@ -41,16 +41,15 @@ a:active {
 #submission_table {
   top: 30px;
   left: 3%;
-  width: 90%;
+  width: 94%;
   table-layout: fixed;
-  overflow: hidden;
-  text-overflow: ellipsis;
-   /*font-size: 22px;*/
 }
 
 #submission_table > tbody > tr > td {
   text-align: center;
   font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 #submission_table > thead > tr > th {
@@ -59,6 +58,19 @@ a:active {
   color: #000;
 }
 
+#grade_column {
+    text-align: center;
+    width:80px;
+}
+
+#save {
+    position: fixed;
+    left:92%;
+    top: 88%;
+    background-color: #FFC107;
+    color: #FFFFFF;
+    width: 80px;
+}
 /*@media only screen and (max-width: 480px) {
     table,
     thead,

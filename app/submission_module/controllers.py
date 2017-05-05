@@ -92,10 +92,26 @@ def view_submissions():
         assigment = getAssignmentByID(session["assignment_id"])
         return render_template("submissions/view_submission_teacher.html", assignment=assigment, submissions = submissions_data)
 
-
 @submission_mod.route('/student_gradebook', methods=["GET","POST"])
 def student_gradebook():
     if request.method == "GET" :
         submissions, assignment_names = getSubmissionsByUserIDandClassCode(session["user_id"], session["class_code"])
         class_name = getClassroomByCode(session["class_code"]).class_name
         return render_template("submissions/student_gradebook/view_grades_student.html", submissions=submissions, assign_names=assignment_names, class_name=class_name, role = 1)
+
+@submission_mod.route('/grade_submissions', methods=["GET","POST"])
+def grade_submissions():
+    if request.method == "GET" :
+        session["assignment_id"] = request.args.get('id')
+        submissions_data = getSubmissionsForAssign(session["assignment_id"])
+        assigment = getAssignmentByID(session["assignment_id"])
+        return render_template("submissions/edit_grades_teacher.html", assignment=assigment, submissions = submissions_data)
+
+
+    if request.method == "POST" :
+        submissions = getSubmissionByAssignID(session["assignment_id"])
+        for submission in submissions:
+            temp = getSubmissionByID(submission.id)
+            temp.grade = request.form.get(str(submission.id))
+            db.session.commit()
+        return redirect(url_for("submission.view_submissions", id=session["assignment_id"]))

@@ -41,6 +41,12 @@ def getAssignmentByClassCode(class_code) :
 def getAssignmentByID(id):
     return Assignment.query.filter(Assignment.assignment_id == id).first()
 
+def getSubmissionByAssignID(assignment_id):
+    return Submission.query.filter(Submission.assignment_id == assignment_id).all()
+
+def getSubmissionByID(id):
+    return Submission.query.filter(Submission.id == id).first()
+
 def getSubmissionByUserIDandAssignID(user_id, assignment_id):
     return Submission.query.filter(Submission.user_id == user_id).filter(Submission.assignment_id == assignment_id).first()
 
