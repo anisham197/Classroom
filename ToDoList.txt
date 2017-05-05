@@ -12,11 +12,9 @@ classes
 IMPORTANT
 
 submissions
-- submissions for single assignment ( to grade ) - Amisha
-- submissions for student across all assignments
+- Grading the single assignment ( to grade ) - Amisha
 - submissions for teachers across all students and all assignments
 
-- assignment name - in submission (for teacher)
 - delete assignments - in submission (for teacher)
 - remove students
 - no file upload, wrong extension

@@ -44,10 +44,6 @@ def getAssignmentByID(id):
 def getSubmissionByUserIDandAssignID(user_id, assignment_id):
     return Submission.query.filter(Submission.user_id == user_id).filter(Submission.assignment_id == assignment_id).first()
 
-def x(session, user_id, assignment_id):
-    submissions = session.query(Submission).join(User, User.id == Submission.user_id).filter(Submission.assignment_id == assignment_id).all()
-    # details = session.query(Submission).join(User, User.id == Submission.user_id).filter(Submission.assignment_id == assignment_id).all()
-
 def getSubmissionsForAssign(assignment_id):
     submissions = Submission.query.filter(Submission.assignment_id == assignment_id).all()
     for submission in submissions :
@@ -57,7 +53,6 @@ def getSubmissionsForAssign(assignment_id):
         submission.user_name = user_object.name
         submission.uid = user_object.tid if role == 0 else user_object.usn
     return submissions
-
 
 def getSubmissionsByUserIDandClassCode(user_id, class_code):
     submissions = Submission.query.filter(Submission.user_id == user_id).filter(Submission.class_code == class_code).all()

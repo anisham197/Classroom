@@ -88,10 +88,6 @@ def view_file(filename):
 def view_submissions():
     if request.method == "GET" :
         session["assignment_id"] = request.args.get('id')
-
-        # get user role of the student
-        # role = getUserByUserID(session["user_id"]).role
-        # submissions = x(db.session, session["user_id"], session["assignment_id"])
         submissions_data = getSubmissionsForAssign(session["assignment_id"])
         assigment_name = getAssignmentByID(session["assignment_id"]).title
         return render_template("submissions/view_submission_teacher.html", assignment_title = assigment_name, submissions = submissions_data)
