@@ -62,8 +62,8 @@ def viewassign():
         # get role and assignment details
         role = getUser_ClassroomByCodeAndID(session["user_id"], session["class_code"]).role
         assignment = getAssignmentByID(session["assignment_id"])
-
-        return render_template("assignments/view_assignment.html", class_code=session["class_code"], role = role, assignment = assignment)
+        submission = getSubmissionByUserIDandAssignID(session["user_id"], session["assignment_id"] )
+        return render_template("assignments/view_assignment.html", class_code=session["class_code"], role=role, assignment=assignment, submission=submission)
 
 @assignment_mod.route("/editassign", methods=["GET", "POST"])
 @login_required
@@ -103,7 +103,7 @@ def editassign():
         db.session.commit()
         return redirect(url_for("assignment.assign", class_code=session["class_code"]))
 
-# 
+#
 # @assignment_mod.route("/viewtable", methods=["GET", "POST"])
 # @login_required
 # def viewtable():

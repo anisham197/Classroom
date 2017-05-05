@@ -70,8 +70,8 @@ def upload():
                 submission.filepath = rel_filepath
                 db.session.commit()
 
-            return redirect(url_for('submission.uploaded_file', filename=filename, assign_id=id))
-            #return redirect(url_for('assignment.viewassign'))
+            # return redirect(url_for('submission.uploaded_file', filename=filename, assign_id=id))
+            return redirect(url_for('assignment.viewassign', id=session["assignment_id"]))
 
 @submission_mod.route('/uploads/<filename>')
 def uploaded_file(filename):

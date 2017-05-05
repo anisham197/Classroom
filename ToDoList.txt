@@ -12,14 +12,14 @@ classes
 IMPORTANT
 
 submissions
-- submissions for single assignment ( to grade )
+- submissions for single assignment ( to grade ) - Amisha
 - submissions for student across all assignments
-- submissions for teachers across all students and all assignments 
+- submissions for teachers across all students and all assignments
 
-- view submission after upload ( name )
 - assignment name - in submission (for teacher)
 - delete assignments - in submission (for teacher)
 - remove students
+- no file upload, wrong extension
 
 
 - teacher name in class (easy, in card not easy )
