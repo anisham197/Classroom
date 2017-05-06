@@ -26,5 +26,11 @@ submissions
 
 - back buttons ( Not easy )
 
+
+Errors :
+-Incorrect class code
+-assignment in nav drawer inside gradebook
+
+
 from passlib.apps import custom_app_context as pwd_context
 pwd_context.encrypt("1234")

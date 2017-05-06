@@ -1,29 +1,12 @@
-{% extends "layout.html" %}
-{% block head %}
+{% extends "layout.html" %} {% block head %}
 <link href="{{ url_for('static', filename='assignment.css') }}" rel="stylesheet" />
-<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.teal-amber.min.css">
-{% endblock %}
-
-{% block title %} Assignment {% endblock %}
-
-{% block body %}
-{% include "assign_nav_drawer.html" %}
+<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.teal-amber.min.css"> {% endblock %} {% block title %} Assignment {% endblock %} {% block body %} {% include "assign_nav_drawer.html" %}
 <div id="class_title">
-<h3>{{class_name}}</h3>
+    <h3>{{class_name}}</h3>
 </div>
 <main id="main-content" class="mdl-layout__content">
 
-{% if assignments %}
-    {% include "all_assignments.html" %}
-
-{% else %}
-    {% include "no_assignments.html" %}
-
-{% endif %}
-
-{% if role is equalto 0 %}
-     {% include "add_assign_fab.html" %}
-{% endif %}
+    {% if assignments %} {% include "all_assignments.html" %} {% else %} {% include "no_assignments.html" %} {% endif %} {% if role is equalto 0 %} {% include "add_assign_fab.html" %} {% endif %}
 
 </main>
 {% endblock %}

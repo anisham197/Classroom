@@ -36,7 +36,6 @@ a:active {
   table-layout: fixed;
   overflow: hidden;
   text-overflow: ellipsis;
-   /*font-size: 22px;*/
 }
 
 #submission_table > tbody > tr > td {
