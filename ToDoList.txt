@@ -9,10 +9,6 @@ classes
 - check join table query - merge two tables ?
 - check session class_code variable ( how to pass around ?)
 
-IMPORTANT
-
-submissions
-- submissions for teachers across all students and all assignments
 
 - edit details - student teacher
 
