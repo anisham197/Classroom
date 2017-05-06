@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block head %}
+<link href="{{ url_for('static', filename='submission.css') }}" rel="stylesheet" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.teal-amber.min.css">
+{% endblock %}
+{% block title %} View Grades {% endblock %}
+
+{% block body %}
+{% include "./assignments/assign_nav_drawer.html" %}
+<div id="assignment_title"><h3>{{classroom.class_name}} - Gradebook</h3> </div>
+  <main id="page_body">
+      <table id="submission_table" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+          <thead>
+              <tr style="height:70px">
+                  <th>S No.</th>
+                  <th>Name</th>
+                  <th>USN</th>
+                  {% for assignment in assignments %}
+                    <th>{{assignment.title}}<br>({{assignment.max_score}})</th>
+                  {% endfor %}
+              </tr>
+          </thead>
+          <tbody>
+              {% for student in students %}
+                <tr>
+                  <td>{{loop.index}}</td>
+                  <td>{{student[1]}}</td>
+                  <td >{{student[2]}}</td>
+                  {% for assignment in assignments %}
+                    {% if gradebook[assignment.assignment_id][student[0]] %}
+                    <td>{{gradebook[assignment.assignment_id][student[0]]}}</td>
+                    {% else %}
+                    <td>-</td>
+                    {% endif %}
+                  {% endfor %}
+                </tr>
+              {% endfor %}
+        </tbody>
+  </main>
+{% endblock %}

@@ -6,7 +6,7 @@
             <a class="mdl-navigation__link" href="{{url_for('assignment.assign', class_code=session['class_code'])}}">Assignments</a>
             <a class="mdl-navigation__link" href="">Notes</a>
             {% if role is equalto 0%}
-            <a class="mdl-navigation__link" href="">Gradebook</a>
+            <a class="mdl-navigation__link" href="{{url_for('classroom.class_gradebook')}}">Gradebook</a>
             <a class="mdl-navigation__link" href="{{url_for('classroom.students')}}">Students</a>
             <a class="mdl-navigation__link" href="{{url_for('classroom.deleteclass')}}">Delete Classroom</a>
             {% elif role is equalto 1%}

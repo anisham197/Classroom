@@ -82,3 +82,13 @@ def getStudentDetails(class_code):
             student = Teacher.query.filter(Teacher.user_id == user.user_id).first()
             studentsList.append([user.user_id, student.name, student.tid, student.email])
     return studentsList
+
+def getGradebook(assignments):
+    gradebook = {}
+    for assignment in assignments:
+        submissions = getSubmissionByAssignID(assignment.assignment_id)
+        for submission in submissions:
+             gradebook[submission.user_id][assignment.assignment_id] = submission.grade
+             print(submission.grade)
+        print()
+    return gradebook

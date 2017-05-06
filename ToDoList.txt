@@ -13,12 +13,11 @@ IMPORTANT
 
 submissions
 - submissions for teachers across all students and all assignments
-- remove students
 
-- teacher name in class (easy, in card not easy )
 - edit details - student teacher
-- delete files... (delete on leaving...)
 
+- delete files... (delete on leaving...)
+- teacher name in class (easy, in card not easy )
 - back buttons ( Not easy )
 
 from passlib.apps import custom_app_context as pwd_context
