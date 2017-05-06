@@ -6,7 +6,7 @@
     <h5>Upload a File</h5><br>
     <form method="POST" action="{{url_for("submission.upload", id=assignment.assignment_id)}}" enctype="multipart/form-data">
         <div>
-          <input type="file" name="file"><br/><br/>
+          <input type="file" name="file" required><br/><br/>
         </div>
       <div class="mdl-dialog__actions">
         <input type="submit" value="Upload" class="mdl-button upload"></button>

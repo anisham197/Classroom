@@ -102,10 +102,55 @@ def deleteclass():
     role = getUser_ClassroomByCodeAndID(session["user_id"], session["class_code"]).role
     # Only creators can delete class
     if  role != CREATOR :
-        return redirect(url_for("classroom.index"))
+        return render_template("auth/no_access.html", msg="You do not have access to this page !")
 
     else :
         classroom = getClassroomByCode(session['class_code'])
         db.session.delete(classroom)
         db.session.commit()
         return redirect(url_for("classroom.index"))
+
+@classroom_mod.route("/students", methods=["GET", "POST"])
+@login_required
+def students():
+    role = getUser_ClassroomByCodeAndID(session["user_id"], session["class_code"]).role
+    if  role != CREATOR :
+        return render_template("auth/no_access.html", msg="You do not have access to this page !")
+
+    if request.method == "GET" :
+        students = getStudentDetails(session["class_code"])
+        classroom = getClassroomByCode(session["class_code"])
+        return render_template("assignments/students.html", students=students, role=role, classroom=classroom)
+
+    if request.method == "POST" :
+        user_id = request.args.get('user_id')
+        class_code = request.args.get('class_code')
+        user_classroom = getUser_ClassroomByCodeAndID(user_id, class_code)
+        db.session.delete(user_classroom)
+        db.session.commit()
+        return redirect(url_for('classroom.students'))
+
+@classroom_mod.route("/class_gradebook", methods=["GET"])
+@login_required
+def class_gradebook():
+    role = getUser_ClassroomByCodeAndID(session["user_id"], session["class_code"]).role
+    if  role != CREATOR :
+        return render_template("auth/no_access.html", msg="You do not have access to this page !")
+
+    if request.method == "GET" :
+        students = getStudentDetails(session["class_code"])
+        classroom = getClassroomByCode(session["class_code"])
+        assignments = getAssignmentByClassCode(session["class_code"])
+
+        gradebook = {}
+        for assignment in assignments:
+            submissions = getSubmissionByAssignID(assignment.assignment_id)
+            assignment_id = assignment.assignment_id
+            gradebook[assignment_id] = {}
+            for submission in submissions:
+                user_id = submission.user_id
+                gradebook[assignment_id][user_id] = submission.grade
+                print(gradebook[assignment_id][user_id])
+            print()
+        #gradebook = getGradebook(assignments)
+        return render_template("classes/class_gradebook.html", students=students,role=role,classroom=classroom,assignments=assignments,gradebook=gradebook)

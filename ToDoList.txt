@@ -9,23 +9,11 @@ classes
 - check join table query - merge two tables ?
 - check session class_code variable ( how to pass around ?)
 
-IMPORTANT
 
-submissions
-- submissions for single assignment ( to grade )
-- submissions for student across all assignments
-- submissions for teachers across all students and all assignments 
-
-- view submission after upload ( name )
-- assignment name - in submission (for teacher)
-- delete assignments - in submission (for teacher)
-- remove students
-
-
-- teacher name in class (easy, in card not easy )
 - edit details - student teacher
-- delete files... (delete on leaving...)
 
+- delete files... (delete on leaving...)
+- teacher name in class (easy, in card not easy )
 - back buttons ( Not easy )
 
 from passlib.apps import custom_app_context as pwd_context

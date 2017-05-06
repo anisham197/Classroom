@@ -23,7 +23,20 @@
            </div>
 
           <div id="view_assign">
-               <h2>{{assignment.title}}</h2>
+             <h2>{{assignment.title}} </h2>
+
+             {% if role is equalto 1 %}
+             <p id="link"> File Submitted:
+                 {% if submission %}
+                 <a style="color:#009688"
+                    href="{{url_for('submission.uploaded_file', assign_id=assignment.assignment_id, filename=submission.filename)}}">
+                    {{submission.filename}}</a>
+                 {% else %}
+                  None
+                 {% endif %}
+             </p>
+             {% endif %}
+
                <h4>Description</h4>
                <div  class="assign_text">
                    <p> {{assignment.description}}</p>

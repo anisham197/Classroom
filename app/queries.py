@@ -41,5 +41,54 @@ def getAssignmentByClassCode(class_code) :
 def getAssignmentByID(id):
     return Assignment.query.filter(Assignment.assignment_id == id).first()
 
+def getSubmissionByAssignID(assignment_id):
+    return Submission.query.filter(Submission.assignment_id == assignment_id).all()
+
+def getSubmissionByID(id):
+    return Submission.query.filter(Submission.id == id).first()
+
 def getSubmissionByUserIDandAssignID(user_id, assignment_id):
     return Submission.query.filter(Submission.user_id == user_id).filter(Submission.assignment_id == assignment_id).first()
+
+def getSubmissionsForAssign(assignment_id):
+    submissions = Submission.query.filter(Submission.assignment_id == assignment_id).all()
+    for submission in submissions :
+        user_id = submission.user_id
+        role = getUserByUserID(user_id).role
+        user_object = getNamebyIDandRole(user_id, role)
+        submission.user_name = user_object.name
+        submission.uid = user_object.tid if role == 0 else user_object.usn
+    return submissions
+
+def getSubmissionsByUserIDandClassCode(user_id, class_code):
+    submissions = Submission.query.filter(Submission.user_id == user_id).filter(Submission.class_code == class_code).all()
+    assignment = Assignment.query.filter(Assignment.class_code == class_code).all()
+
+    assignment_names = {}
+    for a in assignment:
+        assignment_names[a.assignment_id] = [a.title, a.max_score]
+
+    return submissions, assignment_names
+
+def getStudentDetails(class_code):
+    users = User_Classroom.query.filter(User_Classroom.class_code == class_code).filter(User_Classroom.role == 1)
+    studentsList = []
+    for user in users:
+        role = getUserByUserID(user.user_id).role
+        if( role == 1):
+            student = Student.query.filter(Student.user_id == user.user_id).first()
+            studentsList.append([user.user_id, student.name, student.usn, student.email])
+        if( role == 0):
+            student = Teacher.query.filter(Teacher.user_id == user.user_id).first()
+            studentsList.append([user.user_id, student.name, student.tid, student.email])
+    return studentsList
+
+def getGradebook(assignments):
+    gradebook = {}
+    for assignment in assignments:
+        submissions = getSubmissionByAssignID(assignment.assignment_id)
+        for submission in submissions:
+             gradebook[submission.user_id][assignment.assignment_id] = submission.grade
+             print(submission.grade)
+        print()
+    return gradebook

@@ -38,7 +38,7 @@
 }
 
 .class_grid {
-    margin-top: 100px;
+    margin-top: 0px;
 }
 
 .demo-card-square.mdl-card {
@@ -160,4 +160,9 @@
     height: 15px;
     color: #009688;
     font-weight: bolder;
+}
+
+#link {
+    font-size: 16px;
+    color: #000000;
 }

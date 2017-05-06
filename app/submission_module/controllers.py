@@ -70,8 +70,10 @@ def upload():
                 submission.filepath = rel_filepath
                 db.session.commit()
 
-            return redirect(url_for('submission.uploaded_file', filename=filename, assign_id=id))
-            #return redirect(url_for('assignment.viewassign'))
+            # return redirect(url_for('submission.uploaded_file', filename=filename, assign_id=id))
+            return redirect(url_for('assignment.viewassign', id=session["assignment_id"]))
+        else:
+            return render_template("auth/no_access.html", msg="File extension not allowed, Please upload one of these formats: " + str(extensions))
 
 @submission_mod.route('/uploads/<filename>')
 def uploaded_file(filename):
@@ -79,8 +81,39 @@ def uploaded_file(filename):
     submission = getSubmissionByUserIDandAssignID(session['user_id'], assign_id)
     return send_from_directory(os.path.abspath(submission.filepath), submission.filename)
 
+@submission_mod.route('/view_file/<filename>')
+def view_file(filename):
+    filepath = request.args.get('filepath')
+    return send_from_directory(os.path.abspath(filepath), filename)
 
 @submission_mod.route('/view_submissions', methods=["GET","POST"])
 def view_submissions():
     if request.method == "GET" :
-        return render_template("submissions/view_submission_teacher.html")
+        session["assignment_id"] = request.args.get('id')
+        submissions_data = getSubmissionsForAssign(session["assignment_id"])
+        assigment = getAssignmentByID(session["assignment_id"])
+        return render_template("submissions/view_submission_teacher.html", assignment=assigment, submissions = submissions_data)
+
+@submission_mod.route('/student_gradebook', methods=["GET","POST"])
+def student_gradebook():
+    if request.method == "GET" :
+        submissions, assignment_names = getSubmissionsByUserIDandClassCode(session["user_id"], session["class_code"])
+        class_name = getClassroomByCode(session["class_code"]).class_name
+        return render_template("submissions/student_gradebook/view_grades_student.html", submissions=submissions, assign_names=assignment_names, class_name=class_name, role = 1)
+
+@submission_mod.route('/grade_submissions', methods=["GET","POST"])
+def grade_submissions():
+    if request.method == "GET" :
+        session["assignment_id"] = request.args.get('id')
+        submissions_data = getSubmissionsForAssign(session["assignment_id"])
+        assigment = getAssignmentByID(session["assignment_id"])
+        return render_template("submissions/edit_grades_teacher.html", assignment=assigment, submissions = submissions_data)
+
+
+    if request.method == "POST" :
+        submissions = getSubmissionByAssignID(session["assignment_id"])
+        for submission in submissions:
+            temp = getSubmissionByID(submission.id)
+            temp.grade = request.form.get(str(submission.id))
+            db.session.commit()
+        return redirect(url_for("submission.view_submissions", id=session["assignment_id"]))
