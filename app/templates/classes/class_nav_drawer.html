@@ -11,9 +11,9 @@
             <a class="mdl-navigation__link" href="#">Work</a>
 
             {% if role is equalto 0 %}
-            <a class="mdl-navigation__link" href="{{url_for('auth.edit_teacher')}}">Edit Details</a>
+            <a class="mdl-navigation__link" href="#">Edit Details</a>
             {% elif role is equalto 1 %}
-            <a class="mdl-navigation__link" href="{{url_for('auth.edit_student')}}">Edit Details</a>
+            <a class="mdl-navigation__link" href="#">Edit Details</a>
             {% endif %}
 
         </nav>

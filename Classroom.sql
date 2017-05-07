@@ -3,8 +3,8 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 09, 2017 at 12:14 PM
--- Server version: 5.7.17-0ubuntu0.16.04.1
+-- Generation Time: May 07, 2017 at 11:03 AM
+-- Server version: 5.7.18-0ubuntu0.16.04.1
 -- PHP Version: 7.0.15-0ubuntu0.16.04.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -23,6 +23,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `assignment`
+--
+
+CREATE TABLE `assignment` (
+  `assignment_id` int(11) NOT NULL,
+  `class_code` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `last_date` date NOT NULL,
+  `max_score` int(11) NOT NULL,
+  `description` text NOT NULL,
+  `doc_file` tinyint(1) NOT NULL DEFAULT '0',
+  `pdf_file` tinyint(1) NOT NULL DEFAULT '0',
+  `ppt_file` tinyint(1) NOT NULL DEFAULT '0',
+  `zip_file` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `classroom`
 --
 
@@ -34,7 +53,7 @@ CREATE TABLE `classroom` (
   `subject_code` varchar(255) NOT NULL,
   `credits` int(3) NOT NULL,
   `semester` int(3) NOT NULL,
-  `description` varchar(255) NOT NULL
+  `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -49,6 +68,24 @@ CREATE TABLE `student` (
   `usn` varchar(255) NOT NULL,
   `branch` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `submission`
+--
+
+CREATE TABLE `submission` (
+  `id` int(11) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `user_id` int(11) NOT NULL,
+  `class_code` int(11) NOT NULL,
+  `assignment_id` int(11) NOT NULL,
+  `grade` varchar(50) NOT NULL,
+  `file_format` varchar(50) NOT NULL,
+  `filename` varchar(255) NOT NULL,
+  `filepath` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -94,6 +131,14 @@ CREATE TABLE `user_classroom` (
 --
 
 --
+-- Indexes for table `assignment`
+--
+ALTER TABLE `assignment`
+  ADD PRIMARY KEY (`assignment_id`),
+  ADD KEY `title` (`title`),
+  ADD KEY `class_code` (`class_code`);
+
+--
 -- Indexes for table `classroom`
 --
 ALTER TABLE `classroom`
@@ -107,6 +152,15 @@ ALTER TABLE `classroom`
 ALTER TABLE `student`
   ADD PRIMARY KEY (`user_id`),
   ADD UNIQUE KEY `usn` (`usn`);
+
+--
+-- Indexes for table `submission`
+--
+ALTER TABLE `submission`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `class_code` (`class_code`),
+  ADD KEY `assignment_id` (`assignment_id`);
 
 --
 -- Indexes for table `teacher`
@@ -137,13 +191,29 @@ ALTER TABLE `user_classroom`
 --
 
 --
+-- AUTO_INCREMENT for table `assignment`
+--
+ALTER TABLE `assignment`
+  MODIFY `assignment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+--
+-- AUTO_INCREMENT for table `submission`
+--
+ALTER TABLE `submission`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+--
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `assignment`
+--
+ALTER TABLE `assignment`
+  ADD CONSTRAINT `foreign_class_assign` FOREIGN KEY (`class_code`) REFERENCES `classroom` (`class_code`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `classroom`
@@ -158,10 +228,18 @@ ALTER TABLE `student`
   ADD CONSTRAINT `foreign` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `submission`
+--
+ALTER TABLE `submission`
+  ADD CONSTRAINT `fk_assignment` FOREIGN KEY (`assignment_id`) REFERENCES `assignment` (`assignment_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_class` FOREIGN KEY (`class_code`) REFERENCES `classroom` (`class_code`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `teacher`
 --
 ALTER TABLE `teacher`
-  ADD CONSTRAINT `foreign1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `fkteacher` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `user_classroom`
@@ -173,103 +251,3 @@ ALTER TABLE `user_classroom`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
---
--- Table structure for table `assignment`
---
-
-CREATE TABLE `assignment` (
-  `assignment_id` int(11) NOT NULL,
-  `class_code` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `last_date` date NOT NULL,
-  `max_score` int(11) NOT NULL,
-  `description` text NOT NULL,
-  `doc_file` tinyint(1) NOT NULL DEFAULT '0',
-  `pdf_file` tinyint(1) NOT NULL DEFAULT '0',
-  `ppt_file` tinyint(1) NOT NULL DEFAULT '0',
-  `zip_file` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `assignment`
---
-ALTER TABLE `assignment`
-  ADD PRIMARY KEY (`assignment_id`),
-  ADD KEY `title` (`title`),
-  ADD KEY `class_code` (`class_code`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `assignment`
---
-ALTER TABLE `assignment`
-  MODIFY `assignment_id` int(11) NOT NULL AUTO_INCREMENT;
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `assignment`
---
-ALTER TABLE `assignment`
-  ADD CONSTRAINT `foreign_class_assignment` FOREIGN KEY (`class_code`) REFERENCES `classroom` (`class_code`) ON DELETE CASCADE ON UPDATE CASCADE;
-
-
-  --
-  -- Table structure for table `submission`
-  --
-
-  CREATE TABLE `submission` (
-    `id` int(11) NOT NULL,
-    `user_id` int(11) NOT NULL,
-    `class_code` int(11) NOT NULL,
-    `assignment_id` int(11) NOT NULL,
-    `timestamp` timestamp NOT NULL,
-    `grade` varchar(50) NOT NULL ,
-    `file_format` varchar(50) NOT NULL,
-    `filename` varchar(255) NOT NULL,
-    `filepath` varchar(1000) NOT NULL
-  ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-  --
-  -- Indexes for dumped tables
-  --
-
-  --
-  -- Indexes for table `submission`
-  --
-  ALTER TABLE `submission`
-    ADD PRIMARY KEY (`id`),
-    ADD KEY `user_id` (`user_id`),
-    ADD KEY `class_code` (`class_code`),
-    ADD KEY `assignment_id` (`assignment_id`);
-
-  --
-  -- AUTO_INCREMENT for dumped tables
-  --
-
-  --
-  -- AUTO_INCREMENT for table `submission`
-  --
-  ALTER TABLE `submission`
-    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-  --
-  -- Constraints for dumped tables
-  --
-
-  --
-  -- Constraints for table `submission`
-  --
-  ALTER TABLE `submission`
-    ADD CONSTRAINT `fk_assignment` FOREIGN KEY (`assignment_id`) REFERENCES `assignment` (`assignment_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-    ADD CONSTRAINT `fk_class` FOREIGN KEY (`class_code`) REFERENCES `classroom` (`class_code`) ON DELETE CASCADE ON UPDATE CASCADE,
-    ADD CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;

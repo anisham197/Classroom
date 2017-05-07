@@ -94,6 +94,10 @@ def leaveclass():
     user_classroom = getUser_ClassroomByCodeAndID(session['user_id'], session['class_code'])
     db.session.delete(user_classroom)
     db.session.commit()
+    submissions = getSubmissionsByUserIDandClassCode(session['user_id'], session['class_code'])
+    for submission in submissions:
+        db.session.delete(submission)
+        db.session.commit()
     return redirect(url_for("classroom.index"))
 
 @classroom_mod.route("/deleteclass", methods=["GET", "POST"])
