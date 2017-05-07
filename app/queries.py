@@ -50,6 +50,9 @@ def getSubmissionByID(id):
 def getSubmissionByUserIDandAssignID(user_id, assignment_id):
     return Submission.query.filter(Submission.user_id == user_id).filter(Submission.assignment_id == assignment_id).first()
 
+def getSubmissionsByUserIDandClassCode(user_id, class_code):
+    return Submission.query.filter(Submission.user_id == user_id).filter(Submission.class_code == class_code).all()
+
 def getSubmissionsForAssign(assignment_id):
     submissions = Submission.query.filter(Submission.assignment_id == assignment_id).all()
     for submission in submissions :
@@ -60,7 +63,7 @@ def getSubmissionsForAssign(assignment_id):
         submission.uid = user_object.tid if role == 0 else user_object.usn
     return submissions
 
-def getSubmissionsByUserIDandClassCode(user_id, class_code):
+def getSubmissionsAssignmentsByUserIDandClassCode(user_id, class_code):
     submissions = Submission.query.filter(Submission.user_id == user_id).filter(Submission.class_code == class_code).all()
     assignment = Assignment.query.filter(Assignment.class_code == class_code).all()
 

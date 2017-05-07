@@ -92,11 +92,3 @@ def logout():
     # forget any user_id
     session.clear()
     return redirect(url_for('auth.login'))
-
-@auth_mod.route("/edit_teacher", methods=["GET"])
-def edit_teacher():
-    return redirect(url_for('classroom.index'))
-
-@auth_mod.route("/edit_student", methods=["GET"])
-def edit_student():
-    return redirect(url_for('classroom.index'))

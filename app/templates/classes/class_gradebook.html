@@ -15,7 +15,7 @@
               <tr style="height:70px">
                   <th>S No.</th>
                   <th>Name</th>
-                  <th>USN</th>
+                  <th>UID</th>
                   {% for assignment in assignments %}
                     <th>{{assignment.title}}<br>({{assignment.max_score}})</th>
                   {% endfor %}
@@ -31,7 +31,7 @@
                     {% if gradebook[assignment.assignment_id][student[0]] %}
                     <td>{{gradebook[assignment.assignment_id][student[0]]}}</td>
                     {% else %}
-                    <td>-</td>
+                    <td>Not Submitted</td>
                     {% endif %}
                   {% endfor %}
                 </tr>
